@@ -878,6 +878,24 @@ Item {
   IslandSystem { id: islandSystemObject }
 
   // Windows are thrown out of the island on open and pulled back in on close.
+  // Off with {"windowFlight": false} in ~/.config/omarchy/island.json.
+  property bool islandWindowFlight: true
+  FileView {
+    path: root.home + "/.config/omarchy/island.json"
+    watchChanges: true
+    printErrors: false
+    onFileChanged: reload()
+    onLoaded: {
+      try { root.islandWindowFlight = JSON.parse(text()).windowFlight !== false } catch (e) { root.islandWindowFlight = true }
+    }
+    onLoadFailed: root.islandWindowFlight = true
+  }
+  Loader {
+    active: root.islandWindowFlight
+    sourceComponent: islandFlightComponent
+  }
+  Component {
+    id: islandFlightComponent
   IslandFlight {
     tk: root.islandTokens
     islandWidth: root.islandLiveWidth > 0 ? root.islandLiveWidth
@@ -885,6 +903,7 @@ Item {
     islandHeight: root.islandLiveHeight > 0 ? root.islandLiveHeight : root.islandTokens.collapsedHeight
     islandTopRadius: root.islandLiveHeight > 0 ? root.islandLiveTopRadius : root.islandTokens.collapsedTopRadius
     islandBottomRadius: root.islandLiveHeight > 0 ? root.islandLiveBottomRadius : root.islandTokens.collapsedBottomRadius
+  }
   }
 
   IslandStatus {

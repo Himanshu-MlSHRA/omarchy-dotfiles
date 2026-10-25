@@ -93,6 +93,16 @@ Item {
   // painted wallpaper is on. With the static wallpaper the strip is exactly
   // the plain one. State comes from zed.shanshui's own state file, re-read
   // only while the island is open.
+  // The WhatsApp pill only appears when the OmaWhatsApp plugin is installed.
+  property bool hasWhatsapp: false
+  FileView {
+    path: (Quickshell.env("XDG_CONFIG_HOME") || (Quickshell.env("HOME") + "/.config"))
+          + "/omarchy/plugins/io.github.moizibnyousaf.omawhatsapp/manifest.json"
+    printErrors: false
+    onLoaded: tray.hasWhatsapp = true
+    onLoadFailed: tray.hasWhatsapp = false
+  }
+
   property bool shanshuiOn: false
   property bool shanshuiPaused: false
 
@@ -131,7 +141,7 @@ Item {
     hot: shanshuiMouse.containsMouse
     down: shanshuiMouse.pressed
     visible: tray.shanshuiOn
-    anchors.right: whatsapp.left
+    anchors.right: whatsapp.visible ? whatsapp.left : parent.right
     anchors.rightMargin: tray.tk.px(6)
     anchors.verticalCenter: strip.verticalCenter
     height: strip.height
@@ -180,6 +190,7 @@ Item {
     id: whatsapp
     tk: tray.tk
     index: 0
+    visible: tray.hasWhatsapp
     revealed: tray.revealed
     interactive: true
     hot: whatsappMouse.containsMouse

@@ -1,100 +1,75 @@
 # omarchy-dotfiles
 
-My [Omarchy](https://omarchy.org) 4 setup (Hyprland + the Quickshell-based Omarchy shell): a copper-on-black theme,
-a Dynamic Island top bar, and every bar widget, menu and the lock screen rebuilt to match.
-
-Only what differs from a stock Omarchy install is here.
+A **Dynamic Island** for [Omarchy](https://omarchy.org). The top bar becomes one small island, and everything
+(Wi-Fi, sound, Bluetooth, battery, music, notifications, volume, menus, even app windows) comes out of it.
 
 https://github.com/user-attachments/assets/cdd28e1d-3903-40c0-b500-1f9b09ab8614
 
-▶ **A 2:45 walkthrough with voice-over**, recorded straight off the desktop: the Shan Shui wallpaper, the Dynamic Island
-and every page and detail view inside it, notifications and OSD, the launcher and menus, windows flying in and out,
-workspaces, wallpaper settings, and the lock screen with its always-on display.
+## Install
+
+Pick one, paste it in a terminal, done. Needs **Omarchy 4**.
+
+| | What you get | Command |
+|---|---|---|
+| **1. Island** | The island bar. Notifications, volume and brightness show inside it. | `curl -fsSL https://raw.githubusercontent.com/Himanshu-MlSHRA/omarchy-dotfiles/main/install.sh \| bash -s -- island` |
+| **2. Island + motion** | Option 1, plus apps **fly out of the island** when they open, menus **grow out of it**, and workspaces slide. | `curl -fsSL https://raw.githubusercontent.com/Himanshu-MlSHRA/omarchy-dotfiles/main/install.sh \| bash -s -- motion` |
+| **3. Everything** | Exactly my setup: option 2, plus the Coppernight theme, the dot-matrix lock screen with always-on display, the Shan Shui painted wallpaper, restyled widgets and terminal fonts. | `curl -fsSL https://raw.githubusercontent.com/Himanshu-MlSHRA/omarchy-dotfiles/main/install.sh \| bash -s -- full` |
+
+**Undo** (puts back exactly what you had before):
+```sh
+curl -fsSL https://raw.githubusercontent.com/Himanshu-MlSHRA/omarchy-dotfiles/main/install.sh | bash -s -- remove
+```
+
+Your files are backed up first, to `~/.local/state/omarchy-dotfiles/`. Nothing in Omarchy itself is changed, so `omarchy update` keeps working.
+
+## Shortcuts
+
+| Keys | What it does | In |
+|---|---|---|
+| `SUPER + B` (or click the island) | Open / close the island | 1 2 3 |
+| `Tab` / `Shift + Tab` / `←` `→` | Next / previous page in the island | 1 2 3 |
+| Click a tile | Open Wi-Fi, sound, Bluetooth, battery or Claude inside the island | 1 2 3 |
+| `Esc` | Go back one step, then close | 1 2 3 |
+| Click / right-click a notification | Open it / dismiss it | 1 2 3 |
+| `SUPER + ALT + SPACE` | App launcher (grows out of the island in 2 and 3) | Omarchy |
+| `SUPER + SPACE` | Omarchy menu | Omarchy |
+| `SUPER + ESC` | System menu: lock, suspend, restart, shut down | Omarchy |
+| `SUPER + 1` … `9` | Switch workspace (slides in 2 and 3) | Omarchy |
+| `SUPER + SHIFT + L` | Lock the screen | 3 |
+| `SUPER + ALT + W` | Painted wallpaper ↔ still wallpaper | 3 |
+| `SUPER + ALT + SHIFT + W` | Wallpaper settings, inside the island | 3 |
+
+**Lock screen (3):** leave it for 30 seconds and it turns into an always-on display. The screen dims and the
+clock drifts a little so an OLED panel doesn't burn in. Touch anything to wake it.
+
+**Turn off just the flying windows:** put `{ "windowFlight": false }` in `~/.config/omarchy/island.json`.
 
 ## Why
 
-Stock Omarchy is fast and good-looking, but its pieces live in different places: a status bar along the top,
-notifications in a corner, menus and the launcher floating in the middle of the screen, an OSD somewhere else.
-On a 14" laptop that means your eyes and the mouse keep jumping around.
+Stock Omarchy puts things all over the screen: a bar on top, notifications in a corner, menus in the middle, the
+volume popup somewhere else. I wanted one calm place, like a phone, where everything comes out of the top of
+the screen and goes back into it.
 
-I wanted **one calm surface**, like a phone: everything comes out of the top of the screen and goes back into it.
-- The bar is a **Dynamic Island**. Wi-Fi, sound, Bluetooth, battery, media and Claude usage are pages and detail views inside it,
-  not separate popups.
-- Notifications, volume/brightness and the charging animation appear **in** the island.
-- The launcher and every Omarchy menu **morph out of** the island. App windows **fly out of it** when they open and fall back in when they close.
-- The lock screen got the same treatment: a dot-matrix clock, and an **always-on display** that dims the OLED panel
-  and drifts the clock so it doesn't burn in.
+Everything is built with Omarchy's own plugin system (Quickshell). No fork, no Waybar.
 
-All of it is Omarchy's own plugin system (Quickshell/QML): no forked Omarchy, no Waybar, and `omarchy update` keeps working.
+## What's inside
 
-## What's customized
-
-### Desktop shell (`config/omarchy/plugins/anshu.*`)
-| Plugin | What it is |
+| Folder | What it is |
 |---|---|
-| `anshu.bar` | The top bar rebuilt as a **Dynamic Island**: a compact pill (date · time) that grows into pages (media with cover art + seek, Wi-Fi/BT/sound/battery tiles, Claude usage meters, system stats, quick toggles). Shows notifications and volume/brightness OSD inside the island. Windows fly out of / into it. Design notes in `ISLAND.md`. |
-| `anshu.menu` | Omarchy's menu/launcher, opening as the island morphing into a card. |
-| `anshu.lock` | Lock screen: hand-drawn dot-matrix clock, slide-up sheet, fingerprint badge, always-on dim mode. |
-| `anshu.notifications` | Notification service; the island draws the popups. |
-| `anshu.audio`, `anshu.bluetooth`, `anshu.network`, `anshu.power`, `anshu.monitor`, `anshu.weather`, `anshu.clock`, `anshu.workspaces`, `anshu.agents` | Bar widgets cloned from Omarchy's own, restyled with press-bounce and animated panels. |
+| `config/omarchy/plugins/anshu.bar` | The Dynamic Island |
+| `config/omarchy/plugins/anshu.notifications` | Notifications, drawn by the island |
+| `config/omarchy/plugins/anshu.menu` | Menus and launcher that grow out of the island |
+| `config/omarchy/plugins/anshu.lock` | Lock screen and always-on display |
+| `config/omarchy/plugins/anshu.*` (others) | Restyled clock, workspaces, Wi-Fi, sound, Bluetooth, power, weather |
+| `config/omarchy/themes/coppernight` | My tweaks to the Coppernight theme |
+| `config/hypr`, terminals, `starship.toml` | Window look, animations, Maple Mono font |
+| `install.sh` | The installer above |
 
-`config/omarchy/shell.json` swaps these in for `omarchy.notifications`, `omarchy.osd`, `omarchy.menu` and `omarchy.lock`.
+## Credits
 
-### Theme: Coppernight (`config/omarchy/themes/coppernight`)
-- Palette `#000000 / #1F150C / #412D15 / #E1DCC9`, copper accent `#C9955C`, Yaru-wartybrown-dark icons.
-- Themed: terminals, btop, Neovim, Helix, VS Code, Chromium, fastfetch, starship, fish/zsh, cava, Vencord (Discord),
-  YouTube (Stylus), GTK/Nautilus (`gtk.css`, copied into gtk-3/4 by the `theme-gtk-css.sh` theme-set hook),
-  Plymouth logo (`unlock.png`).
-- `hyprland.lua` in the theme: fast, smooth macOS-style animation curves.
+- [Omarchy](https://github.com/basecamp/omarchy) by DHH and contributors
+- [Coppernight theme](https://github.com/hembramnishant50-glitch/omarchy-coppernight-theme) by Nishant
+- [Shan Shui wallpaper](https://github.com/zednaked/omarchy-shanshui) by ZeD, based on LingDong-'s [{Shan, Shui}*](https://github.com/LingDong-/shan-shui-inf)
+- Look and motion inspired by [Panacea](https://github.com/EnsixD/Panacea) and [Atoll](https://github.com/Ebullioscopic/Atoll)
 
-### Hyprland (`config/hypr`)
-- `looknfeel.lua`: dimmed inactive windows, 0.90/0.82 window opacity, blur rules for menus/launcher, layer animations.
-- `bindings.lua`:
-  - `SUPER+B` open the island (or the Panacea panel when Panacea mode is on); `Esc` / `Tab` / arrows navigate it
-  - `SUPER+SHIFT+L` lock
-  - `SUPER+SHIFT+W` WhatsApp
-  - `SUPER+ALT+W` Shan Shui painted wallpaper on/off, `SUPER+ALT+SHIFT+W` its settings
-- `monitors.lua`: scale 2 (2880x1800 OLED laptop panel - change for your screen).
-- `autostart.lua`: starts Panacea if Panacea mode was left on.
-
-### Look elsewhere
-- Font **Maple Mono NF** in alacritty / foot / kitty / ghostty, size 8–9.
-- `starship.toml`: two-line copper prompt.
-- `branding/`: custom ASCII art for About and the screensaver.
-
-### Third-party plugins (not vendored - installed from their repos, my patches in `patches/`)
-- [zed.shanshui](https://github.com/zednaked/omarchy-shanshui) - endless Chinese ink landscape painted as the wallpaper.
-- [OmaWhatsApp](https://github.com/MoizIbnYousaf/Omarchy-Whatsapp) - `patches/omawhatsapp.patch`: real chat names and
-  message text in notifications. `omarchy plugin update` overwrites it; re-apply the patch after updating.
-- [Panacea](https://github.com/EnsixD/Panacea) @ `8636001` - an alternative pill shell, **off by default**.
-  `patches/panacea.patch` adds a light/dark palette (`Pal.qml`) and WhatsApp / Shan Shui / Claude buttons.
-  Switch with `panacea-mode on|off|status` (in `local/bin`). Its own `install.sh` was never run - it replaces
-  Hyprland, foot, fish, GRUB and SDDM configs.
-
-### Scripts (`local/bin`)
-- `panacea-mode` - switch between the island and the Panacea pill.
-- `fp-chip` - list/clear prints stored on the match-on-chip fingerprint reader (Windows Hello dual-boot wipes them).
-
-### System (`system/`, needs sudo)
-- `/etc/bluetooth/main.conf` - fast connect, auto-reconnect, `JustWorksRepairing = always` (fixes earbuds refusing to reconnect).
-- `/etc/modprobe.d/btusb-no-autosuspend.conf` - stops the Bluetooth adapter sleeping.
-- `config/wireplumber/.../bluetooth-a2dp-autoconnect.conf` - prefer A2DP on connect.
-- `config/spotify-flags.conf` - native Wayland (the X11 path crashed the GPU process).
-
-### Packages added on top of Omarchy (`packages/`)
-- **pacman**: see `packages/pacman.txt`
-- **AUR**: see `packages/aur.txt`
-
-## Not included (on purpose)
-- Wallpapers - mostly copyrighted art.
-- `~/.config/git/config` - personal name/email.
-- WhatsApp session data, browser profiles, app state.
-- Dozens of `*.bak*` / `*-backup-*` files from experimenting.
-
-## Use
-```sh
-./sync.sh                 # refresh the repo from this machine (run before committing)
-./install.sh              # on a fresh Omarchy: configs, plugins, scripts (backs up what it replaces)
-./install.sh --packages --system
-omarchy theme set coppernight && omarchy restart shell
-```
+Made on Omarchy 4.0 with Hyprland 0.56. MIT licensed.
