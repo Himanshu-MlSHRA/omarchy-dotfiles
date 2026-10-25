@@ -5,13 +5,11 @@ a Dynamic Island top bar, and every bar widget, menu and the lock screen rebuilt
 
 Only what differs from a stock Omarchy install is here.
 
-https://github.com/user-attachments/assets/fee6a940-b61e-4471-8863-317940b08e6b
+https://github.com/user-attachments/assets/cdd28e1d-3903-40c0-b500-1f9b09ab8614
 
-▶ **The full 75-second walkthrough, with sound** (above): lock screen and always-on display, the island and its pages,
-Wi-Fi / sound / Bluetooth / battery / Claude detail views, notifications, OSD, launcher, menus, windows flying in and out,
-workspace switching, and the Shan Shui wallpaper.
-
-![Walkthrough highlights](docs/walkthrough.gif)
+▶ **A 2:45 walkthrough with voice-over**, recorded straight off the desktop: the Shan Shui wallpaper, the Dynamic Island
+and every page and detail view inside it, notifications and OSD, the launcher and menus, windows flying in and out,
+workspaces, wallpaper settings, and the lock screen with its always-on display.
 
 ## Why
 
