@@ -1,0 +1,5 @@
+antigravity
+anydesk-bin
+linux-wallpaperengine-git
+maplemono-nf
+wacli-bin

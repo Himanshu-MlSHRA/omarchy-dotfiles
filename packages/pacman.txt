@@ -1,0 +1,15 @@
+brave-bin
+discord
+easyeffects
+fprintd
+freerdp
+ghostty
+google-chrome
+kitty
+libfprint-git
+rustdesk
+spotify
+visual-studio-code-bin
+voxtype-bin
+waydroid
+zenity

@@ -1,0 +1,241 @@
+/* OMARCHY-COPPERNIGHT gtk.css
+   Palette: #000000  #1F150C  #412D15  #E1DCC9
+   Installed to ~/.config/gtk-{3,4}.0/gtk.css by the theme-set hook. */
+
+@define-color palette_black  #000000;
+@define-color palette_dark   #1F150C;
+@define-color palette_brown  #412D15;
+@define-color palette_cream  #E1DCC9;
+@define-color palette_tan    #C9955C;
+
+/* libadwaita (GTK4: Nautilus, settings, etc.) */
+:root {
+  --accent-bg-color: #412D15;
+  --accent-fg-color: #E1DCC9;
+  --accent-color: #C9955C;
+  --window-bg-color: #000000;
+  --window-fg-color: #E1DCC9;
+  --view-bg-color: #000000;
+  --view-fg-color: #E1DCC9;
+  --headerbar-bg-color: #1F150C;
+  --headerbar-fg-color: #E1DCC9;
+  --headerbar-backdrop-color: #000000;
+  --sidebar-bg-color: #1F150C;
+  --sidebar-fg-color: #E1DCC9;
+  --sidebar-backdrop-color: #1F150C;
+  --secondary-sidebar-bg-color: #1F150C;
+  --card-bg-color: alpha(#412D15, 0.45);
+  --card-fg-color: #E1DCC9;
+  --dialog-bg-color: #1F150C;
+  --dialog-fg-color: #E1DCC9;
+  --popover-bg-color: #1F150C;
+  --popover-fg-color: #E1DCC9;
+  --thumbnail-bg-color: #1F150C;
+  --border-color: alpha(#412D15, 0.9);
+}
+
+/* Legacy named colors (GTK3 and older libadwaita) */
+@define-color accent_bg_color #412D15;
+@define-color accent_fg_color #E1DCC9;
+@define-color accent_color #C9955C;
+@define-color window_bg_color #000000;
+@define-color window_fg_color #E1DCC9;
+@define-color view_bg_color #000000;
+@define-color view_fg_color #E1DCC9;
+@define-color headerbar_bg_color #1F150C;
+@define-color headerbar_fg_color #E1DCC9;
+@define-color headerbar_backdrop_color #000000;
+@define-color sidebar_bg_color #1F150C;
+@define-color sidebar_fg_color #E1DCC9;
+@define-color card_bg_color alpha(#412D15, 0.45);
+@define-color card_fg_color #E1DCC9;
+@define-color dialog_bg_color #1F150C;
+@define-color dialog_fg_color #E1DCC9;
+@define-color popover_bg_color #1F150C;
+@define-color popover_fg_color #E1DCC9;
+@define-color theme_bg_color #000000;
+@define-color theme_fg_color #E1DCC9;
+@define-color theme_base_color #000000;
+@define-color theme_text_color #E1DCC9;
+@define-color theme_selected_bg_color #412D15;
+@define-color theme_selected_fg_color #E1DCC9;
+@define-color borders alpha(#412D15, 0.9);
+
+/* Selection: brown with cream text */
+selection,
+*:selected,
+gridview > child:selected,
+columnview row:selected,
+list row:selected {
+  background-color: alpha(@palette_brown, 0.85);
+  color: @palette_cream;
+}
+
+/* Smooth, macOS-like hover feedback */
+button,
+list row,
+gridview > child,
+sidebar row,
+.navigation-sidebar row {
+  transition: background-color 220ms cubic-bezier(0.22, 1, 0.36, 1),
+              color 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+gridview > child:hover,
+list row:hover,
+.navigation-sidebar row:hover {
+  background-color: alpha(@palette_brown, 0.45);
+}
+
+.navigation-sidebar row:selected {
+  background-color: @palette_brown;
+  color: @palette_cream;
+}
+
+button.suggested-action,
+switch:checked,
+scale highlight,
+progressbar progress {
+  background-color: @palette_tan;
+  color: @palette_black;
+}
+
+entry:focus-within,
+searchentry:focus-within {
+  outline-color: alpha(@palette_tan, 0.6);
+}
+
+scrollbar slider {
+  background-color: alpha(@palette_cream, 0.35);
+}
+
+scrollbar slider:hover {
+  background-color: alpha(@palette_cream, 0.6);
+}
+
+tooltip {
+  background-color: @palette_dark;
+  color: @palette_cream;
+}
+
+/* Folder-open animation: items fade, rise and grow into place. */
+@keyframes palette-item-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.94); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes palette-view-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+gridview > child {
+  animation: palette-item-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+columnview > listview > row {
+  animation: palette-item-in 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+gridview,
+columnview {
+  animation: palette-view-in 300ms ease-out both;
+}
+
+/* Popovers and context menus ease in too. */
+popover > contents {
+  animation: palette-view-in 200ms ease-out both;
+}
+
+/* ───────────────────────── Warm & tidy (Nautilus) ─────────────────────────
+   Soft rounded tiles, copper selection, Maple Mono for the path bar.
+   Scoped to .nautilus-window so other GTK apps keep the plain palette. */
+
+.nautilus-window {
+  font-family: "Maple Mono NF", monospace;
+}
+
+/* Warm wash behind the file view instead of flat black. */
+.nautilus-window gridview,
+.nautilus-window columnview > listview {
+  background-image: linear-gradient(to bottom, alpha(@palette_dark, 0.55), @palette_black 320px);
+}
+
+/* Icon grid: rounded tiles that lift on hover. */
+.nautilus-window gridview > child {
+  border-radius: 12px;
+  padding: 6px;
+  margin: 2px;
+}
+.nautilus-window gridview > child:hover {
+  background-color: alpha(@palette_brown, 0.38);
+}
+.nautilus-window gridview > child:selected {
+  background-color: alpha(@palette_tan, 0.22);
+  box-shadow: inset 0 0 0 1px alpha(@palette_tan, 0.55);
+  color: @palette_cream;
+}
+
+/* List view rows: rounded pills with a little breathing room. */
+.nautilus-window columnview > listview > row {
+  border-radius: 8px;
+  margin: 1px 6px;
+}
+.nautilus-window columnview > listview > row:selected {
+  background-color: alpha(@palette_tan, 0.22);
+  box-shadow: inset 0 0 0 1px alpha(@palette_tan, 0.45);
+}
+
+/* Sidebar: rounded rows, copper text + soft tan pill for the current place. */
+.nautilus-window .navigation-sidebar row {
+  border-radius: 9px;
+  margin: 1px 6px;
+}
+.nautilus-window .navigation-sidebar row:selected {
+  background-color: alpha(@palette_tan, 0.18);
+  color: @palette_tan;
+}
+.nautilus-window .navigation-sidebar row:selected image {
+  color: @palette_tan;
+}
+
+/* Path bar: Maple Mono, rounded crumbs, the current folder in copper. */
+.nautilus-window .nautilus-pathbar {
+  background-color: alpha(@palette_brown, 0.35);
+  border-radius: 10px;
+}
+.nautilus-window .nautilus-pathbar button {
+  font-family: "Maple Mono NF", monospace;
+  border-radius: 8px;
+}
+.nautilus-window .nautilus-pathbar button:checked,
+.nautilus-window .nautilus-pathbar button.current-dir,
+.nautilus-window .nautilus-pathbar button:last-child {
+  color: @palette_tan;
+  font-weight: 700;
+}
+
+/* Header bar blends into the sidebar; no hard line. */
+.nautilus-window headerbar {
+  box-shadow: none;
+  border-bottom: 1px solid alpha(@palette_brown, 0.5);
+}
+
+/* Rubber-band selection in copper. */
+.nautilus-window rubberband {
+  background-color: alpha(@palette_tan, 0.15);
+  border: 1px solid alpha(@palette_tan, 0.6);
+  border-radius: 6px;
+}
+
+/* Popovers and context menus: rounded, warm. */
+.nautilus-window popover > contents {
+  border-radius: 14px;
+  background-color: @palette_dark;
+  box-shadow: 0 0 0 1px alpha(@palette_brown, 0.9), 0 10px 30px alpha(black, 0.5);
+}
+.nautilus-window popover modelbutton:hover,
+.nautilus-window popover row:hover {
+  background-color: alpha(@palette_tan, 0.18);
+  border-radius: 8px;
+}

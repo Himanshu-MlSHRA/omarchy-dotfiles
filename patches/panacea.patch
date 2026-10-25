@@ -1,0 +1,2359 @@
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/AudioView.qml panacea/AudioView.qml
+--- a/AudioView.qml	2026-10-19 21:28:06.961699198 +0530
++++ b/AudioView.qml	2026-10-19 21:57:24.614121130 +0530
+@@ -108,7 +108,7 @@
+                 Layout.preferredWidth: 30
+                 Layout.preferredHeight: 30
+                 radius: 10
+-                color: backMa.containsMouse ? Qt.rgba(1, 1, 1, 0.13) : Qt.rgba(1, 1, 1, 0.06)
++                color: backMa.containsMouse ? Pal.fa(0.13) : Pal.fa(0.06)
+                 Behavior on color { ColorAnimation { duration: 150 } }
+                 Text {
+                     anchors.centerIn: parent
+@@ -176,7 +176,7 @@
+                     width: parent.usable
+                     height: 6
+                     radius: 3
+-                    color: Qt.rgba(1, 1, 1, 0.12)
++                    color: Pal.fa(0.12)
+                     Rectangle {
+                         width: parent.width * sl.pos
+                         height: parent.height
+@@ -189,7 +189,7 @@
+                     width: 18; height: 18; radius: 9
+                     anchors.verticalCenter: parent.verticalCenter
+                     x: sl.pos * sl.usable
+-                    color: "#ffffff"
++                    color: Pal.fg
+                     border.color: view.sys.colBg
+                     border.width: 2
+                     scale: drag.pressed ? 1.25 : (drag.containsMouse ? 1.1 : 1.0)
+@@ -240,7 +240,7 @@
+                 radius: 12
+                 color: dev.active
+                        ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g, view.sys.colOn.b, 0.16)
+-                       : (devMa.containsMouse ? Qt.rgba(1, 1, 1, 0.10) : Qt.rgba(1, 1, 1, 0.05))
++                       : (devMa.containsMouse ? Pal.fa(0.10) : Pal.fa(0.05))
+                 border.color: dev.active
+                               ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g, view.sys.colOn.b, 0.40)
+                               : view.sys.colLine
+@@ -346,7 +346,7 @@
+                 Layout.fillWidth: true
+                 Layout.preferredHeight: 58
+                 radius: 12
+-                color: Qt.rgba(1, 1, 1, 0.05)
++                color: Pal.fa(0.05)
+                 border.color: view.sys.colLine
+                 border.width: 1
+ 
+@@ -423,7 +423,7 @@
+                             width: parent.usable
+                             height: 4
+                             radius: 2
+-                            color: Qt.rgba(1, 1, 1, 0.12)
++                            color: Pal.fa(0.12)
+                             Rectangle {
+                                 width: parent.width * appSl.pos
+                                 height: parent.height
+@@ -437,7 +437,7 @@
+                             width: 14; height: 14; radius: 7
+                             anchors.verticalCenter: parent.verticalCenter
+                             x: appSl.pos * appSl.usable
+-                            color: "#ffffff"
++                            color: Pal.fg
+                             border.color: view.sys.colBg
+                             border.width: 2
+                             scale: appDrag.pressed ? 1.25 : (appDrag.containsMouse ? 1.1 : 1.0)
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/AuthView.qml panacea/AuthView.qml
+--- a/AuthView.qml	2026-10-19 21:28:06.961699198 +0530
++++ b/AuthView.qml	2026-10-19 21:57:24.614362819 +0530
+@@ -73,9 +73,9 @@
+             Layout.fillWidth: true
+             Layout.preferredHeight: 42
+             radius: 12
+-            color: Qt.rgba(1, 1, 1, 0.06)
++            color: Pal.fa(0.06)
+             border.color: view.flow && view.flow.failed ? view.sys.colCrit
+-                        : pw.activeFocus ? Qt.rgba(1, 1, 1, 0.25)
++                        : pw.activeFocus ? Pal.fa(0.25)
+                                          : view.sys.colLine
+             border.width: 1
+             Behavior on border.color { ColorAnimation { duration: 160 } }
+@@ -138,7 +138,7 @@
+                 Layout.preferredWidth: 104
+                 Layout.preferredHeight: 34
+                 radius: 11
+-                color: cancelMa.containsMouse ? Qt.rgba(1, 1, 1, 0.13) : Qt.rgba(1, 1, 1, 0.06)
++                color: cancelMa.containsMouse ? Pal.fa(0.13) : Pal.fa(0.06)
+                 Behavior on color { ColorAnimation { duration: 150 } }
+                 Text {
+                     anchors.centerIn: parent
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/CalendarView.qml panacea/CalendarView.qml
+--- a/CalendarView.qml	2026-10-19 21:28:06.961699198 +0530
++++ b/CalendarView.qml	2026-10-19 21:57:24.614464194 +0530
+@@ -66,7 +66,7 @@
+         Layout.preferredWidth: 30
+         Layout.preferredHeight: 30
+         radius: 10
+-        color: navMa.containsMouse ? Qt.rgba(1, 1, 1, 0.13) : Qt.rgba(1, 1, 1, 0.06)
++        color: navMa.containsMouse ? Pal.fa(0.13) : Pal.fa(0.06)
+         Behavior on color { ColorAnimation { duration: 150 } }
+ 
+         Text {
+@@ -153,7 +153,7 @@
+                     color: cell.modelData.isToday
+                            ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g, view.sys.colOn.b, 0.22)
+                            : (cellMa.containsMouse && cell.modelData.inMonth
+-                              ? Qt.rgba(1, 1, 1, 0.08) : "transparent")
++                              ? Pal.fa(0.08) : "transparent")
+                     border.color: cell.modelData.isToday ? view.sys.colOn : "transparent"
+                     border.width: 1
+                     Behavior on color { ColorAnimation { duration: 140 } }
+@@ -161,7 +161,7 @@
+                     Text {
+                         anchors.centerIn: parent
+                         text: cell.modelData.day
+-                        color: !cell.modelData.inMonth ? Qt.rgba(1, 1, 1, 0.18)
++                        color: !cell.modelData.inMonth ? Pal.fa(0.18)
+                              : cell.modelData.isToday  ? view.sys.colFg
+                              : cell.modelData.weekend  ? Qt.rgba(1, 0.42, 0.42, 0.85)
+                                                        : view.sys.colFg
+@@ -190,7 +190,7 @@
+             radius: 10
+             visible: view.viewMonth !== view.today.getMonth()
+                      || view.viewYear !== view.today.getFullYear()
+-            color: todayMa.containsMouse ? Qt.rgba(1, 1, 1, 0.13) : Qt.rgba(1, 1, 1, 0.06)
++            color: todayMa.containsMouse ? Pal.fa(0.13) : Pal.fa(0.06)
+             Behavior on color { ColorAnimation { duration: 150 } }
+             Text {
+                 anchors.centerIn: parent
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/ClipboardView.qml panacea/ClipboardView.qml
+--- a/ClipboardView.qml	2026-10-19 21:28:06.961699198 +0530
++++ b/ClipboardView.qml	2026-10-19 21:57:24.614744931 +0530
+@@ -207,8 +207,8 @@
+                 Layout.fillWidth: true
+                 Layout.preferredHeight: 38
+                 radius: 12
+-                color: Qt.rgba(1, 1, 1, 0.06)
+-                border.color: input.activeFocus ? Qt.rgba(1, 1, 1, 0.22) : view.sys.colLine
++                color: Pal.fa(0.06)
++                border.color: input.activeFocus ? Pal.fa(0.22) : view.sys.colLine
+                 border.width: 1
+                 Behavior on border.color { ColorAnimation { duration: 150 } }
+ 
+@@ -292,7 +292,7 @@
+ 
+             ScrollBar.vertical: ScrollBar {
+                 policy: ScrollBar.AsNeeded
+-                contentItem: Rectangle { radius: 2; color: Qt.rgba(1, 1, 1, 0.22) }
++                contentItem: Rectangle { radius: 2; color: Pal.fa(0.22) }
+             }
+ 
+             delegate: Rectangle {
+@@ -300,9 +300,9 @@
+                 width: list.width
+                 height: 40
+                 radius: 10
+-                color: index === list.currentIndex ? Qt.rgba(1, 1, 1, 0.12)
++                color: index === list.currentIndex ? Pal.fa(0.12)
+                      : rowMa.containsMouse ? view.sys.colHover : "transparent"
+-                border.color: model.isPinned ? Qt.rgba(1, 1, 1, 0.18) : "transparent"
++                border.color: model.isPinned ? Pal.fa(0.18) : "transparent"
+                 border.width: model.isPinned ? 1 : 0
+                 Behavior on color { ColorAnimation { duration: 130 } }
+ 
+@@ -336,7 +336,7 @@
+                             radius: 4
+                             color: rowDelegate.cType === "color" ? model.preview.trim() : "transparent"
+                             border.width: 1
+-                            border.color: Qt.rgba(1, 1, 1, 0.3)
++                            border.color: Pal.fa(0.3)
+                         }
+ 
+                         // Image file thumbnail
+@@ -383,7 +383,7 @@
+                             Layout.preferredHeight: 22
+                             Layout.preferredWidth: 36
+                             radius: 5
+-                            color: rgbMa.containsMouse ? Qt.rgba(1, 1, 1, 0.22) : Qt.rgba(1, 1, 1, 0.10)
++                            color: rgbMa.containsMouse ? Pal.fa(0.22) : Pal.fa(0.10)
+                             Text {
+                                 anchors.centerIn: parent
+                                 text: "RGB"
+@@ -405,7 +405,7 @@
+                             Layout.preferredHeight: 22
+                             Layout.preferredWidth: 36
+                             radius: 5
+-                            color: hslMa.containsMouse ? Qt.rgba(1, 1, 1, 0.22) : Qt.rgba(1, 1, 1, 0.10)
++                            color: hslMa.containsMouse ? Pal.fa(0.22) : Pal.fa(0.10)
+                             Text {
+                                 anchors.centerIn: parent
+                                 text: "HSL"
+@@ -427,7 +427,7 @@
+                             Layout.preferredHeight: 22
+                             Layout.preferredWidth: 26
+                             radius: 5
+-                            color: urlMa.containsMouse ? Qt.rgba(1, 1, 1, 0.22) : Qt.rgba(1, 1, 1, 0.10)
++                            color: urlMa.containsMouse ? Pal.fa(0.22) : Pal.fa(0.10)
+                             Text {
+                                 anchors.centerIn: parent
+                                 text: "󰌹"
+@@ -449,7 +449,7 @@
+                             Layout.preferredHeight: 22
+                             Layout.preferredWidth: 26
+                             radius: 5
+-                            color: fileMa.containsMouse ? Qt.rgba(1, 1, 1, 0.22) : Qt.rgba(1, 1, 1, 0.10)
++                            color: fileMa.containsMouse ? Pal.fa(0.22) : Pal.fa(0.10)
+                             Text {
+                                 anchors.centerIn: parent
+                                 text: "󰈙"
+@@ -470,7 +470,7 @@
+                             Layout.preferredHeight: 22
+                             Layout.preferredWidth: 26
+                             radius: 5
+-                            color: pinMa.containsMouse ? Qt.rgba(1, 1, 1, 0.22) : (model.isPinned ? Qt.rgba(1, 0, 0, 0.16) : Qt.rgba(1, 1, 1, 0.08))
++                            color: pinMa.containsMouse ? Pal.fa(0.22) : (model.isPinned ? Qt.rgba(1, 0, 0, 0.16) : Pal.fa(0.08))
+                             Text {
+                                 anchors.centerIn: parent
+                                 text: "󰤱"
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/ControlsView.qml panacea/ControlsView.qml
+--- a/ControlsView.qml	2026-10-19 21:28:06.961699198 +0530
++++ b/ControlsView.qml	2026-10-19 21:58:41.244148927 +0530
+@@ -103,8 +103,8 @@
+         Layout.preferredHeight: 54
+         radius: 14
+         color: active ? Qt.rgba(accent.r, accent.g, accent.b, 0.18)
+-                      : (segMa.containsMouse ? Qt.rgba(1, 1, 1, 0.09)
+-                                             : Qt.rgba(1, 1, 1, 0.05))
++                      : (segMa.containsMouse ? Pal.fa(0.09)
++                                             : Pal.fa(0.05))
+         border.color: active ? Qt.rgba(accent.r, accent.g, accent.b, 0.40)
+                              : view.sys.colLine
+         border.width: 1
+@@ -121,7 +121,7 @@
+             Text {
+                 Layout.alignment: Qt.AlignHCenter
+                 text: parent.parent.icon
+-                color: parent.parent.active ? parent.parent.accent : "#ffffff"
++                color: parent.parent.active ? parent.parent.accent : Pal.fg
+                 font { family: view.sys.fontFam; pixelSize: 17 }
+                 Behavior on color { ColorAnimation { duration: 180 } }
+             }
+@@ -156,7 +156,7 @@
+         Layout.fillWidth: true
+         Layout.preferredHeight: 62
+         radius: 16
+-        color: on ? Qt.rgba(accent.r, accent.g, accent.b, 0.16) : Qt.rgba(1, 1, 1, 0.05)
++        color: on ? Qt.rgba(accent.r, accent.g, accent.b, 0.16) : Pal.fa(0.05)
+         border.color: on ? Qt.rgba(accent.r, accent.g, accent.b, 0.35) : view.sys.colLine
+         border.width: 1
+         Behavior on color { ColorAnimation { duration: 180 } }
+@@ -174,7 +174,7 @@
+                 Layout.preferredWidth: 40
+                 Layout.preferredHeight: 40
+                 radius: 20
+-                color: parent.parent.on ? parent.parent.accent : Qt.rgba(1, 1, 1, 0.10)
++                color: parent.parent.on ? parent.parent.accent : Pal.fa(0.10)
+                 Behavior on color { ColorAnimation { duration: 180 } }
+                 scale: iconMa.pressed ? 0.9 : (iconMa.containsMouse ? 1.06 : 1.0)
+                 Behavior on scale { NumberAnimation { duration: 130; easing.type: Easing.OutBack } }
+@@ -182,7 +182,7 @@
+                 Text {
+                     anchors.centerIn: parent
+                     text: iconBtn.parent.parent.icon
+-                    color: "#ffffff"
++                    color: Pal.fg
+                     font { family: view.sys.fontFam; pixelSize: 17 }
+                 }
+                 MouseArea {
+@@ -247,7 +247,7 @@
+         implicitHeight: 44
+         radius: 13
+         z: ibMa.containsMouse ? 10 : 0
+-        color: ibMa.containsMouse ? Qt.rgba(1, 1, 1, 0.12) : Qt.rgba(1, 1, 1, 0.05)
++        color: ibMa.containsMouse ? Pal.fa(0.12) : Pal.fa(0.05)
+         border.color: active ? Qt.rgba(view.sys.colOk.r, view.sys.colOk.g, view.sys.colOk.b, 0.5) : view.sys.colLine
+         border.width: 1
+         Behavior on color { ColorAnimation { duration: 160 } }
+@@ -435,7 +435,7 @@
+         radius: 14
+         color: solid ? accent
+              : on ? Qt.rgba(accent.r, accent.g, accent.b, 0.16)
+-                  : Qt.rgba(1, 1, 1, 0.05)
++                  : Pal.fa(0.05)
+         border.color: solid ? accent
+                     : on ? Qt.rgba(accent.r, accent.g, accent.b, 0.35)
+                          : view.sys.colLine
+@@ -467,7 +467,7 @@
+                 radius: 19
+                 color: tile.solid ? view.sys.colBg
+                      : tile.on ? tile.accent
+-                               : Qt.rgba(1, 1, 1, 0.10)
++                               : Pal.fa(0.10)
+                 Behavior on color { ColorAnimation { duration: 180 } }
+                 scale: miniIconMa.pressed ? 0.9 : (miniIconMa.containsMouse ? 1.07 : 1.0)
+                 Behavior on scale { NumberAnimation { duration: 130; easing.type: Easing.OutBack } }
+@@ -475,9 +475,9 @@
+                 // Значок лежит прямо на кружке, и цвет берётся от него: на
+                 // акцентном кружке белый по белому не виден вовсе, а на
+                 // вывернутом чёрном — наоборот, только белый и виден.
+-                readonly property color ink: tile.solid ? "#ffffff"
++                readonly property color ink: tile.solid ? Pal.fg
+                                            : tile.on ? view.sys.fgOn(tile.accent)
+-                                                     : "#ffffff"
++                                                     : Pal.fg
+ 
+                 Text {
+                     anchors.centerIn: parent
+@@ -557,7 +557,7 @@
+         implicitHeight: 44
+         Layout.fillWidth: true
+         radius: 12
+-        color: Qt.rgba(1, 1, 1, 0.05)
++        color: Pal.fa(0.05)
+         border.color: view.sys.colLine
+         border.width: 1
+ 
+@@ -590,7 +590,7 @@
+         implicitHeight: primary ? 42 : 34
+         radius: width / 2
+         color: primary ? view.sys.colFg
+-              : (mbMa.containsMouse ? view.sys.colHover : Qt.rgba(1, 1, 1, 0.08))
++              : (mbMa.containsMouse ? view.sys.colHover : Pal.fa(0.08))
+         opacity: enabledAction ? 1 : 0.35
+         Behavior on color { ColorAnimation { duration: 140 } }
+         scale: mbMa.pressed ? 0.9 : (mbMa.containsMouse ? 1.08 : 1.0)
+@@ -668,7 +668,7 @@
+         Rectangle {
+             anchors.fill: parent
+             radius: height / 2
+-            color: Qt.rgba(1, 1, 1, 0.12)
++            color: Pal.fa(0.12)
+             clip: true
+ 
+             Rectangle {
+@@ -754,7 +754,7 @@
+         implicitWidth: 190
+         implicitHeight: 56
+         radius: 14
+-        color: Qt.rgba(1, 1, 1, 0.05)
++        color: Pal.fa(0.05)
+         border.color: view.sys.colLine
+         border.width: 1
+ 
+@@ -844,7 +844,7 @@
+         implicitWidth: 190
+         implicitHeight: 56
+         radius: 14
+-        color: Qt.rgba(1, 1, 1, 0.05)
++        color: Pal.fa(0.05)
+         border.color: view.sys.colLine
+         border.width: 1
+ 
+@@ -961,7 +961,7 @@
+         Layout.preferredHeight: 42
+         radius: 12
+         color: rowMa.containsMouse ? view.sys.colHover
+-             : (highlight ? Qt.rgba(1, 1, 1, 0.06) : "transparent")
++             : (highlight ? Pal.fa(0.06) : "transparent")
+         Behavior on color { ColorAnimation { duration: 130 } }
+ 
+         RowLayout {
+@@ -1058,7 +1058,7 @@
+         id: recCard
+ 
+         radius: 14
+-        color: recBodyMa.containsMouse ? Qt.rgba(1, 1, 1, 0.08) : Qt.rgba(1, 1, 1, 0.05)
++        color: recBodyMa.containsMouse ? Pal.fa(0.08) : Pal.fa(0.05)
+         border.color: view.sys.recActive
+                       ? Qt.rgba(view.sys.colCrit.r, view.sys.colCrit.g,
+                                 view.sys.colCrit.b, 0.45)
+@@ -1091,7 +1091,7 @@
+                 radius: 17
+                 // Идёт запись — кнопка налита красным, значит «нажми, чтобы
+                 // прекратить». Стоит — обычный кружок с треугольником.
+-                color: view.sys.recActive ? view.sys.colCrit : Qt.rgba(1, 1, 1, 0.10)
++                color: view.sys.recActive ? view.sys.colCrit : Pal.fa(0.10)
+                 Behavior on color { ColorAnimation { duration: 180 } }
+                 scale: recBtnMa.pressed ? 0.9 : (recBtnMa.containsMouse ? 1.07 : 1.0)
+                 Behavior on scale { NumberAnimation { duration: 130; easing.type: Easing.OutBack } }
+@@ -1100,7 +1100,7 @@
+                     anchors.centerIn: parent
+                     text: String.fromCodePoint(view.sys.recActive ? 0xF04DB : 0xF040A)
+                     color: view.sys.recActive
+-                           ? view.sys.fgOn(view.sys.colCrit) : "#ffffff"
++                           ? view.sys.fgOn(view.sys.colCrit) : Pal.fg
+                     font { family: view.sys.fontFam; pixelSize: 15 }
+                 }
+ 
+@@ -1181,7 +1181,7 @@
+             Layout.preferredHeight: 3
+             Layout.alignment: Qt.AlignVCenter
+             radius: 1.5
+-            color: Qt.rgba(1, 1, 1, 0.12)
++            color: Pal.fa(0.12)
+ 
+             Rectangle {
+                 width: parent.width * Math.max(0, Math.min(100, lrow.pct)) / 100
+@@ -1246,7 +1246,7 @@
+ 
+     component LoadCard: Rectangle {
+         radius: 14
+-        color: Qt.rgba(1, 1, 1, 0.05)
++        color: Pal.fa(0.05)
+         border.color: view.sys.colLine
+         border.width: 1
+ 
+@@ -1318,7 +1318,7 @@
+                     Layout.fillWidth: true
+                     Layout.preferredHeight: 40
+                     radius: 12
+-                    color: clockMa.containsMouse ? Qt.rgba(1, 1, 1, 0.08) : "transparent"
++                    color: clockMa.containsMouse ? Pal.fa(0.08) : "transparent"
+                     Behavior on color { ColorAnimation { duration: 150 } }
+ 
+                     RowLayout {
+@@ -1364,7 +1364,7 @@
+                                 visible: view.sys.cfg.featCalendar
+                                 text: view.sys.tr("Календарь")
+                                 color: clockMa.containsMouse ? view.sys.colOn
+-                                                            : Qt.rgba(1, 1, 1, 0.28)
++                                                            : Pal.fa(0.28)
+                                 font { family: view.sys.fontFam; pixelSize: view.sys.fontSize - 5 }
+                                 Behavior on color { ColorAnimation { duration: 150 } }
+                             }
+@@ -1531,7 +1531,7 @@
+                 Layout.fillWidth: true
+                 Layout.preferredHeight: 124
+                 radius: 16
+-                color: Qt.rgba(1, 1, 1, 0.05)
++                color: Pal.fa(0.05)
+                 border.color: view.sys.colLine
+                 border.width: 1
+ 
+@@ -1552,7 +1552,7 @@
+                             Layout.preferredWidth: 42
+                             Layout.preferredHeight: 42
+                             radius: 10
+-                            color: Qt.rgba(1, 1, 1, 0.07)
++                            color: Pal.fa(0.07)
+ 
+                             Image {
+                                 id: cardArt
+@@ -1571,7 +1571,7 @@
+                                 anchors.fill: parent
+                                 visible: false
+                                 layer.enabled: true
+-                                Rectangle { anchors.fill: parent; radius: 10; color: "#ffffff" }
++                                Rectangle { anchors.fill: parent; radius: 10; color: Pal.fg }
+                             }
+                             MultiEffect {
+                                 anchors.fill: parent
+@@ -1709,7 +1709,7 @@
+                             anchors.fill: parent
+                             barCount: 46
+                             gap: 3
+-                            barColor: Qt.rgba(1, 1, 1, 0.22)
++                            barColor: Pal.fa(0.22)
+                             active: seek.p ? seek.p.isPlaying : false
+                         }
+ 
+@@ -1742,7 +1742,7 @@
+                             width: seekMa.pressed ? 3 : 2
+                             height: parent.height
+                             radius: 1.5
+-                            color: "#ffffff"
++                            color: Pal.fg
+                             opacity: !seek.usable ? 0
+                                    : (seekMa.containsMouse || seekMa.pressed) ? 1 : 0
+                             Behavior on opacity { NumberAnimation { duration: 140 } }
+@@ -1790,7 +1790,7 @@
+                         DotText {
+                             value: view.fmtTime(seek.dur)
+                             size: view.sys.dotHSmall
+-                            color: Qt.rgba(1, 1, 1, 0.28)
++                            color: Pal.fa(0.28)
+                         }
+                     }
+                 }
+@@ -1898,7 +1898,7 @@
+                 radius: 12
+                 color: view.sys.keepAwake
+                        ? Qt.rgba(awakeRow.tint.r, awakeRow.tint.g, awakeRow.tint.b, 0.16)
+-                       : (awakeMa.containsMouse ? Qt.rgba(1, 1, 1, 0.10) : Qt.rgba(1, 1, 1, 0.05))
++                       : (awakeMa.containsMouse ? Pal.fa(0.10) : Pal.fa(0.05))
+                 border.color: view.sys.keepAwake
+                               ? Qt.rgba(awakeRow.tint.r, awakeRow.tint.g, awakeRow.tint.b, 0.40)
+                               : view.sys.colLine
+@@ -1934,7 +1934,7 @@
+                         Layout.preferredWidth: 38
+                         Layout.preferredHeight: 21
+                         radius: 11
+-                        color: view.sys.keepAwake ? awakeRow.tint : Qt.rgba(1, 1, 1, 0.14)
++                        color: view.sys.keepAwake ? awakeRow.tint : Pal.fa(0.14)
+                         Behavior on color { ColorAnimation { duration: 180 } }
+                         Rectangle {
+                             width: 17; height: 17; radius: 9
+@@ -1942,7 +1942,7 @@
+                             x: view.sys.keepAwake ? parent.width - width - 2 : 2
+                             // на белой дорожке белый кружок пропадает
+                             color: view.sys.keepAwake
+-                                   ? view.sys.fgOn(awakeRow.tint) : "#ffffff"
++                                   ? view.sys.fgOn(awakeRow.tint) : Pal.fg
+                             Behavior on x {
+                                 NumberAnimation { duration: 180; easing.type: Easing.OutCubic }
+                             }
+@@ -1959,6 +1959,27 @@
+                 }
+             }
+ 
++            // --- local additions: WhatsApp, Shan Shui wallpaper, Claude usage
++            IconBtn {
++                glyph: String.fromCodePoint(0xF05A3)          // nf-md-whatsapp
++                tip: "WhatsApp"
++                onAct: {
++                    view.sys.collapse()
++                    Quickshell.execDetached(["omarchy-shell", "io.github.moizibnyousaf.omawhatsapp", "openApp", "{}"])
++                }
++            }
++            IconBtn {
++                // 山: click = painted landscape <-> static wallpaper
++                glyph: "山"
++                tip: "Shan Shui wallpaper"
++                onAct: Quickshell.execDetached(["omarchy-shell", "-q", "shanshui", "alternar"])
++            }
++            IconBtn {
++                glyph: String.fromCodePoint(0xF06A9)          // nf-md-robot: Claude usage
++                tip: "Claude usage"
++                onAct: view.sys.openAgents()
++            }
++
+             // кнопка питания: меню выключения, перезагрузки, блокировки и сна
+             IconBtn {
+                 glyph: String.fromCodePoint(0xF0425)
+@@ -2013,7 +2034,7 @@
+                         Layout.preferredHeight: 32
+                         z: trayMa.containsMouse ? 10 : 0
+                         radius: 10
+-                        color: trayMa.containsMouse ? Qt.rgba(1, 1, 1, 0.13) : Qt.rgba(1, 1, 1, 0.05)
++                        color: trayMa.containsMouse ? Pal.fa(0.13) : Pal.fa(0.05)
+                         border.color: view.sys.colLine
+                         border.width: 1
+                         Behavior on color { ColorAnimation { duration: 150 } }
+@@ -2114,7 +2135,7 @@
+                 Layout.fillWidth: true
+                 Layout.preferredHeight: 62
+                 radius: 14
+-                color: Qt.rgba(1, 1, 1, 0.05)
++                color: Pal.fa(0.05)
+                 border.color: view.sys.colLine
+                 border.width: 1
+ 
+@@ -2289,7 +2310,7 @@
+                 Layout.preferredHeight: 46
+                 visible: wifiPage.passwordFor.length > 0
+                 radius: 12
+-                color: Qt.rgba(1, 1, 1, 0.06)
++                color: Pal.fa(0.06)
+                 border.color: view.sys.colLine
+                 border.width: 1
+ 
+@@ -2328,11 +2349,11 @@
+                         Layout.preferredWidth: 34; Layout.preferredHeight: 32
+                         radius: 10
+                         color: pwField.text.length && (wifiPage.passwordSecurity !== "eap" || userField.text.length)
+-                               ? view.sys.colOn : Qt.rgba(1, 1, 1, 0.10)
++                               ? view.sys.colOn : Pal.fa(0.10)
+                         Behavior on color { ColorAnimation { duration: 150 } }
+                         Text {
+                             anchors.centerIn: parent; text: "󰁕"
+-                            color: "#ffffff"
++                            color: Pal.fg
+                             font { family: view.sys.fontFam; pixelSize: 13 }
+                         }
+                         MouseArea {
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/DotIcon.qml panacea/DotIcon.qml
+--- a/DotIcon.qml	2026-10-19 21:28:06.961699198 +0530
++++ b/DotIcon.qml	2026-10-19 21:57:24.616544718 +0530
+@@ -35,7 +35,7 @@
+     property string code: ""
+     property real size: 16
+     property real gapRatio: 0.22
+-    property color color: "#ffffff"
++    property color color: Pal.fg
+ 
+     readonly property real dotSize: ico.size / (7 + 6 * ico.gapRatio)
+     readonly property real gap: ico.dotSize * ico.gapRatio
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/DotText.qml panacea/DotText.qml
+--- a/DotText.qml	2026-10-19 21:28:06.961699198 +0530
++++ b/DotText.qml	2026-10-19 21:57:24.616744783 +0530
+@@ -34,7 +34,7 @@
+     //   0.22  обычное начертание — здесь
+     //   0.1   почти смыкаются, самое жирное
+     property real gapRatio: 0.22
+-    property color color: "#ffffff"
++    property color color: Pal.fg
+ 
+     // Из высоты обратно в диаметр. Цифра занимает семь рядов, между ними
+     // шесть просветов: size = 7·d + 6·(d·r).
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/FilesView.qml panacea/FilesView.qml
+--- a/FilesView.qml	2026-10-19 21:28:06.961699198 +0530
++++ b/FilesView.qml	2026-10-19 21:57:24.617692165 +0530
+@@ -947,7 +947,7 @@
+             Layout.leftMargin: 10
+             Layout.bottomMargin: 2
+             text: sec.title
+-            color: Qt.rgba(1, 1, 1, 0.32)
++            color: Pal.fa(0.32)
+             font {
+                 family: view.sys.fontFam; pixelSize: view.sys.fontSize - 5
+                 bold: true; capitalization: Font.AllUppercase; letterSpacing: 1
+@@ -969,7 +969,7 @@
+                 Layout.preferredHeight: disk.model.dSize > 0 ? 58 : 34
+                 radius: 12
+                 color: diskMa.containsMouse ? view.sys.colHover
+-                     : (disk.active ? Qt.rgba(1, 1, 1, 0.07) : "transparent")
++                     : (disk.active ? Pal.fa(0.07) : "transparent")
+                 Behavior on color { ColorAnimation { duration: 130 } }
+ 
+                 ColumnLayout {
+@@ -988,13 +988,13 @@
+                                       disk.model.dDev === "mtp" ? 0xF011C
+                                     : sec.removable ? 0xF129B
+                                                     : 0xF02CA)
+-                            color: disk.active ? view.sys.colOn : (disk.mounted ? view.sys.colMuted : Qt.rgba(1, 1, 1, 0.35))
++                            color: disk.active ? view.sys.colOn : (disk.mounted ? view.sys.colMuted : Pal.fa(0.35))
+                             font { family: view.sys.fontFam; pixelSize: 15 }
+                         }
+                         Text {
+                             Layout.fillWidth: true
+                             text: disk.model.dLabel
+-                            color: disk.active ? view.sys.colFg : (disk.mounted ? view.sys.colFg : Qt.rgba(1, 1, 1, 0.65))
++                            color: disk.active ? view.sys.colFg : (disk.mounted ? view.sys.colFg : Pal.fa(0.65))
+                             elide: Text.ElideRight
+                             font {
+                                 family: view.sys.fontFam
+@@ -1008,12 +1008,12 @@
+                             Layout.preferredWidth: 20
+                             Layout.preferredHeight: 20
+                             radius: 5
+-                            color: ejectMa.containsMouse ? Qt.rgba(1, 1, 1, 0.16) : "transparent"
++                            color: ejectMa.containsMouse ? Pal.fa(0.16) : "transparent"
+                             Behavior on color { ColorAnimation { duration: 120 } }
+                             Text {
+                                 anchors.centerIn: parent
+                                 text: "⏏"
+-                                color: ejectMa.containsMouse ? view.sys.colCrit : Qt.rgba(1, 1, 1, 0.65)
++                                color: ejectMa.containsMouse ? view.sys.colCrit : Pal.fa(0.65)
+                                 font { family: view.sys.fontFam; pixelSize: 12; bold: true }
+                             }
+                             MouseArea {
+@@ -1028,7 +1028,7 @@
+                             visible: disk.mounted && disk.model.dSize > 0 && !(sec.removable && diskMa.containsMouse)
+                             text: Math.round(disk.frac * 100) + "%"
+                             color: disk.frac > 0.9 ? view.sys.colCrit
+-                                                   : Qt.rgba(1, 1, 1, 0.42)
++                                                   : Pal.fa(0.42)
+                             font {
+                                 family: view.sys.fontFam
+                                 pixelSize: view.sys.fontSize - 6
+@@ -1043,7 +1043,7 @@
+                         text: disk.mounted
+                               ? (view.human(disk.model.dUsed) + " / " + view.human(disk.model.dSize))
+                               : (view.human(disk.model.dSize) + " • " + view.sys.tr("Подключить"))
+-                        color: disk.mounted ? Qt.rgba(1, 1, 1, 0.28) : view.sys.colOn
++                        color: disk.mounted ? Pal.fa(0.28) : view.sys.colOn
+                         elide: Text.ElideRight
+                         font { family: view.sys.fontFam; pixelSize: view.sys.fontSize - 7 }
+                     }
+@@ -1054,7 +1054,7 @@
+                         Layout.fillWidth: true
+                         Layout.preferredHeight: 3
+                         radius: 2
+-                        color: Qt.rgba(1, 1, 1, 0.10)
++                        color: Pal.fa(0.10)
+                         Rectangle {
+                             width: parent.width * Math.max(0, Math.min(1, disk.frac))
+                             height: parent.height
+@@ -1094,7 +1094,7 @@
+         // не имела высоты. Считаем координату через положение в раскладке.
+         y: col.y + headSep.y + headSep.height
+         height: Math.max(0, view.height - y)
+-        color: Qt.rgba(1, 1, 1, 0.14)
++        color: Pal.fa(0.14)
+         visible: !view.openWithFile.length && height > 0
+     }
+ 
+@@ -1117,7 +1117,7 @@
+             Rectangle {
+                 Layout.preferredWidth: 40; Layout.preferredHeight: 40
+                 radius: 13
+-                color: upMa.containsMouse ? view.sys.colHover : Qt.rgba(1, 1, 1, 0.05)
++                color: upMa.containsMouse ? view.sys.colHover : Pal.fa(0.05)
+                 border.color: view.sys.colLine
+                 border.width: 1
+                 Behavior on color { ColorAnimation { duration: 140 } }
+@@ -1161,7 +1161,7 @@
+                 Layout.preferredWidth: 260
+                 Layout.preferredHeight: 38
+                 radius: 19
+-                color: Qt.rgba(1, 1, 1, 0.06)
++                color: Pal.fa(0.06)
+                 border.color: view.filter.length ? view.sys.colOn : view.sys.colLine
+                 border.width: 1
+                 Behavior on border.color { ColorAnimation { duration: 150 } }
+@@ -1179,7 +1179,7 @@
+                     Text {
+                         Layout.fillWidth: true
+                         text: view.filter.length ? view.filter : view.sys.tr("Просто печатайте")
+-                        color: view.filter.length ? view.sys.colFg : Qt.rgba(1, 1, 1, 0.30)
++                        color: view.filter.length ? view.sys.colFg : Pal.fa(0.30)
+                         elide: Text.ElideRight
+                         font { family: view.sys.fontFam; pixelSize: view.sys.fontSize - 1 }
+                     }
+@@ -1194,7 +1194,7 @@
+                 Layout.preferredWidth: 76
+                 Layout.preferredHeight: 38
+                 radius: 19
+-                color: Qt.rgba(1, 1, 1, 0.06)
++                color: Pal.fa(0.06)
+                 border.color: view.sys.colLine
+                 border.width: 1
+ 
+@@ -1216,7 +1216,7 @@
+                             radius: 15
+                             color: on ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g,
+                                                 view.sys.colOn.b, 0.25)
+-                                 : (modeMa.containsMouse ? Qt.rgba(1, 1, 1, 0.08)
++                                 : (modeMa.containsMouse ? Pal.fa(0.08)
+                                                          : "transparent")
+                             Behavior on color { ColorAnimation { duration: 130 } }
+ 
+@@ -1273,7 +1273,7 @@
+                         Layout.preferredHeight: 38
+                         radius: 12
+                         color: placeMa.containsMouse ? view.sys.colHover
+-                             : (place.active ? Qt.rgba(1, 1, 1, 0.07) : "transparent")
++                             : (place.active ? Pal.fa(0.07) : "transparent")
+                         Behavior on color { ColorAnimation { duration: 130 } }
+ 
+                         RowLayout {
+@@ -1370,7 +1370,7 @@
+                         radius: 9
+                         color: on ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g,
+                                             view.sys.colOn.b, 0.20)
+-                             : (sortMa.containsMouse ? Qt.rgba(1, 1, 1, 0.10) : "transparent")
++                             : (sortMa.containsMouse ? Pal.fa(0.10) : "transparent")
+                         Behavior on color { ColorAnimation { duration: 140 } }
+                         Behavior on Layout.preferredWidth { NumberAnimation { duration: 140 } }
+ 
+@@ -1406,7 +1406,7 @@
+ 
+                     Text {
+                         text: view.sys.tr("Сортировка")
+-                        color: Qt.rgba(1, 1, 1, 0.30)
++                        color: Pal.fa(0.30)
+                         font {
+                             family: view.sys.fontFam; pixelSize: view.sys.fontSize - 5
+                             bold: true; capitalization: Font.AllUppercase; letterSpacing: 1
+@@ -1429,7 +1429,7 @@
+                         color: view.sys.cfg.filesHidden
+                                ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g,
+                                          view.sys.colOn.b, 0.18)
+-                             : (hidMa.containsMouse ? Qt.rgba(1, 1, 1, 0.10) : "transparent")
++                             : (hidMa.containsMouse ? Pal.fa(0.10) : "transparent")
+                         Behavior on color { ColorAnimation { duration: 140 } }
+ 
+                         RowLayout {
+@@ -1470,7 +1470,7 @@
+                         color: view.foldersFirst
+                                ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g,
+                                          view.sys.colOn.b, 0.18)
+-                             : (ffMa.containsMouse ? Qt.rgba(1, 1, 1, 0.10) : "transparent")
++                             : (ffMa.containsMouse ? Pal.fa(0.10) : "transparent")
+                         Behavior on color { ColorAnimation { duration: 140 } }
+ 
+                         RowLayout {
+@@ -1642,8 +1642,8 @@
+                              : row.isSelected
+                                ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g,
+                                          view.sys.colOn.b, 0.20)
+-                             : index === view.current ? Qt.rgba(1, 1, 1, 0.09)
+-                             : (rowMa.containsMouse ? Qt.rgba(1, 1, 1, 0.05) : "transparent")
++                             : index === view.current ? Pal.fa(0.09)
++                             : (rowMa.containsMouse ? Pal.fa(0.05) : "transparent")
+                         Behavior on color { ColorAnimation { duration: 120 } }
+                         border.color: row.dropTarget ? view.sys.colOn
+                                     : row.isSelected ? view.sys.colOn
+@@ -1688,14 +1688,14 @@
+                             // дата изменения — у всех, включая папки
+                             Text {
+                                 text: view.timeText(row.model)
+-                                color: Qt.rgba(1, 1, 1, 0.26)
++                                color: Pal.fa(0.26)
+                                 horizontalAlignment: Text.AlignRight
+                                 font { family: view.sys.fontFam; pixelSize: view.sys.fontSize - 4 }
+                             }
+                             Text {
+                                 Layout.preferredWidth: 62
+                                 text: view.sizeText(row.model)
+-                                color: Qt.rgba(1, 1, 1, 0.32)
++                                color: Pal.fa(0.32)
+                                 horizontalAlignment: Text.AlignRight
+                                 font { family: view.sys.fontFam; pixelSize: view.sys.fontSize - 3 }
+                             }
+@@ -1879,8 +1879,8 @@
+                              : tile.isSelected
+                                ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g,
+                                          view.sys.colOn.b, 0.20)
+-                             : index === view.current ? Qt.rgba(1, 1, 1, 0.09)
+-                             : (tileMa.containsMouse ? Qt.rgba(1, 1, 1, 0.05) : "transparent")
++                             : index === view.current ? Pal.fa(0.09)
++                             : (tileMa.containsMouse ? Pal.fa(0.05) : "transparent")
+                         Behavior on color { ColorAnimation { duration: 120 } }
+                         border.color: tile.dropTarget ? view.sys.colOn
+                                     : tile.isSelected ? view.sys.colOn
+@@ -2082,7 +2082,7 @@
+                     // Выделена выбранная строка, а не первая: раньше подсветка
+                     // стояла на программе по умолчанию и не двигалась, из-за
+                     // чего было не видно, что именно запустит Enter.
+-                    color: appRow.index === appList.index ? Qt.rgba(1, 1, 1, 0.11)
++                    color: appRow.index === appList.index ? Pal.fa(0.11)
+                          : (appMa.containsMouse ? view.sys.colHover : "transparent")
+                     Behavior on color { ColorAnimation { duration: 120 } }
+ 
+@@ -2791,12 +2791,12 @@
+             Rectangle {
+                 Layout.preferredWidth: 40; Layout.preferredHeight: 40
+                 radius: 20
+-                color: dialogField.text.trim().length ? view.sys.colOn : Qt.rgba(1, 1, 1, 0.10)
++                color: dialogField.text.trim().length ? view.sys.colOn : Pal.fa(0.10)
+                 Behavior on color { ColorAnimation { duration: 150 } }
+                 Text {
+                     anchors.centerIn: parent
+                     text: String.fromCodePoint(0xF012C)
+-                    color: "#ffffff"
++                    color: Pal.fg
+                     font { family: view.sys.fontFam; pixelSize: 15 }
+                 }
+                 MouseArea {
+@@ -2866,7 +2866,7 @@
+                 Rectangle {
+                     Layout.preferredWidth: 40; Layout.preferredHeight: 40
+                     radius: 11
+-                    color: Qt.rgba(1, 1, 1, 0.08)
++                    color: Pal.fa(0.08)
+                     Glyph {
+                         anchors.fill: parent
+                         glyph: String.fromCodePoint(propsPanel.isDir ? 0xF024B : 0xF0224)
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/FlipText.qml panacea/FlipText.qml
+--- a/FlipText.qml	2026-10-19 21:28:06.961699198 +0530
++++ b/FlipText.qml	2026-10-19 21:57:24.618193532 +0530
+@@ -7,7 +7,7 @@
+     id: ft
+ 
+     property string value: ""
+-    property color  textColor: "#ffffff"
++    property color  textColor: Pal.fg
+     property string fontFam: "monospace"
+     property int    pixelSize: 15
+     property bool   bold: true
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/Glyph.qml panacea/Glyph.qml
+--- a/Glyph.qml	2026-10-19 21:28:06.961699198 +0530
++++ b/Glyph.qml	2026-10-19 21:57:24.618260385 +0530
+@@ -15,7 +15,7 @@
+     id: glyph
+ 
+     property string glyph: ""
+-    property color color: "#ffffff"
++    property color color: Pal.fg
+     property string fontFam: "monospace"
+     property real size: 16
+ 
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/LanGlyph.qml panacea/LanGlyph.qml
+--- a/LanGlyph.qml	2026-10-19 21:28:06.961699198 +0530
++++ b/LanGlyph.qml	2026-10-19 21:57:24.618312657 +0530
+@@ -17,7 +17,7 @@
+ Item {
+     id: lan
+ 
+-    property color color: "#ffffff"
++    property color color: Pal.fg
+     // Толщина линий целым числом пикселей, а не долей высоты: дробная
+     // обводка размазывается сглаживанием, и при размерах острова фигура из
+     // тонких линий превращается в серое пятно. Порог подобран по двум
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/LauncherView.qml panacea/LauncherView.qml
+--- a/LauncherView.qml	2026-10-19 21:28:06.961699198 +0530
++++ b/LauncherView.qml	2026-10-19 21:57:24.618447779 +0530
+@@ -265,8 +265,8 @@
+             Layout.fillWidth: true
+             Layout.preferredHeight: 42
+             radius: 13
+-            color: Qt.rgba(1, 1, 1, 0.06)
+-            border.color: input.activeFocus ? Qt.rgba(1, 1, 1, 0.22) : view.sys.colLine
++            color: Pal.fa(0.06)
++            border.color: input.activeFocus ? Pal.fa(0.22) : view.sys.colLine
+             border.width: 1
+             Behavior on border.color { ColorAnimation { duration: 150 } }
+ 
+@@ -373,7 +373,7 @@
+             ScrollBar.vertical: ScrollBar {
+                 policy: ScrollBar.AsNeeded
+                 width: 3
+-                contentItem: Rectangle { radius: 2; color: Qt.rgba(1, 1, 1, 0.22) }
++                contentItem: Rectangle { radius: 2; color: Pal.fa(0.22) }
+             }
+ 
+             delegate: Rectangle {
+@@ -384,8 +384,8 @@
+                 width: list.width
+                 height: 44
+                 radius: 12
+-                color: index === view.index ? Qt.rgba(1, 1, 1, 0.11)
+-                     : (rowMa.containsMouse ? Qt.rgba(1, 1, 1, 0.06) : "transparent")
++                color: index === view.index ? Pal.fa(0.11)
++                     : (rowMa.containsMouse ? Pal.fa(0.06) : "transparent")
+                 Behavior on color { ColorAnimation { duration: 120 } }
+ 
+                 RowLayout {
+@@ -415,7 +415,7 @@
+                             anchors.fill: parent
+                             visible: !appIcon.visible
+                             radius: 7
+-                            color: Qt.rgba(1, 1, 1, 0.10)
++                            color: Pal.fa(0.10)
+                             // у своих строк иконки в теме нет и быть не может —
+                             // рисуем глиф, а буквой обходятся только приложения
+                             Glyph {
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/MediaView.qml panacea/MediaView.qml
+--- a/MediaView.qml	2026-10-19 21:28:06.962234439 +0530
++++ b/MediaView.qml	2026-10-19 21:57:24.618724200 +0530
+@@ -177,7 +177,7 @@
+         implicitHeight: 30
+         radius: 15
+         color: active ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g, view.sys.colOn.b, 0.18)
+-             : (cMa.containsMouse ? Qt.rgba(1, 1, 1, 0.10) : Qt.rgba(1, 1, 1, 0.05))
++             : (cMa.containsMouse ? Pal.fa(0.10) : Pal.fa(0.05))
+         border.color: active ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g,
+                                        view.sys.colOn.b, 0.45)
+                              : view.sys.colLine
+@@ -210,7 +210,7 @@
+         implicitHeight: 40
+         radius: 20
+         color: filled ? Qt.rgba(tint.r, tint.g, tint.b, ibMa.containsMouse ? 0.34 : 0.22)
+-                      : (ibMa.containsMouse ? Qt.rgba(1, 1, 1, 0.12) : Qt.rgba(1, 1, 1, 0.05))
++                      : (ibMa.containsMouse ? Pal.fa(0.12) : Pal.fa(0.05))
+         border.color: view.sys.colLine
+         border.width: 1
+         Behavior on color { ColorAnimation { duration: 140 } }
+@@ -283,7 +283,7 @@
+                 radius: 14
+                 color: view.cropMode
+                        ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g, view.sys.colOn.b, 0.24)
+-                       : (cropMa.containsMouse ? Qt.rgba(1, 1, 1, 0.12) : Qt.rgba(1, 1, 1, 0.05))
++                       : (cropMa.containsMouse ? Pal.fa(0.12) : Pal.fa(0.05))
+                 border.color: view.cropMode
+                               ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g, view.sys.colOn.b, 0.5)
+                               : view.sys.colLine
+@@ -598,7 +598,7 @@
+                     width: parent.width
+                     height: 6
+                     radius: 3
+-                    color: Qt.rgba(1, 1, 1, 0.12)
++                    color: Pal.fa(0.12)
+                 }
+                 // выбранный кусок
+                 Rectangle {
+@@ -615,14 +615,14 @@
+                     width: track.xOf(player.position / 1000)
+                     height: 6
+                     radius: 3
+-                    color: Qt.rgba(1, 1, 1, 0.35)
++                    color: Pal.fa(0.35)
+                 }
+                 // головка
+                 Rectangle {
+                     width: 4; height: 20; radius: 2
+                     x: track.xOf(player.position / 1000) - 2
+                     anchors.verticalCenter: parent.verticalCenter
+-                    color: "#ffffff"
++                    color: Pal.fg
+                 }
+ 
+                 // Маркеры обрезки и головка: одной областью, чтобы понимать,
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/NotificationsView.qml panacea/NotificationsView.qml
+--- a/NotificationsView.qml	2026-10-19 21:28:06.962234439 +0530
++++ b/NotificationsView.qml	2026-10-19 21:57:24.618937145 +0530
+@@ -42,7 +42,7 @@
+                 radius: 10
+                 color: view.sys.dnd
+                        ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g, view.sys.colOn.b, 0.20)
+-                       : (dndMa.containsMouse ? Qt.rgba(1, 1, 1, 0.12) : Qt.rgba(1, 1, 1, 0.06))
++                       : (dndMa.containsMouse ? Pal.fa(0.12) : Pal.fa(0.06))
+                 border.color: view.sys.dnd ? view.sys.colOn : view.sys.colLine
+                 border.width: 1
+                 Behavior on color { ColorAnimation { duration: 160 } }
+@@ -78,7 +78,7 @@
+                 Layout.preferredHeight: 30
+                 radius: 10
+                 visible: view.sys.notifications.count > 0
+-                color: clearMa.containsMouse ? Qt.rgba(1, 1, 1, 0.13) : Qt.rgba(1, 1, 1, 0.06)
++                color: clearMa.containsMouse ? Pal.fa(0.13) : Pal.fa(0.06)
+                 Behavior on color { ColorAnimation { duration: 150 } }
+                 Text {
+                     anchors.centerIn: parent
+@@ -112,7 +112,7 @@
+ 
+             ScrollBar.vertical: ScrollBar {
+                 policy: ScrollBar.AsNeeded
+-                contentItem: Rectangle { radius: 2; color: Qt.rgba(1, 1, 1, 0.22) }
++                contentItem: Rectangle { radius: 2; color: Pal.fa(0.22) }
+             }
+ 
+             delegate: Rectangle {
+@@ -129,7 +129,7 @@
+                 width: list.width
+                 height: inner.implicitHeight + 20
+                 radius: 12
+-                color: rowMa.containsMouse ? Qt.rgba(1, 1, 1, 0.09) : Qt.rgba(1, 1, 1, 0.05)
++                color: rowMa.containsMouse ? Pal.fa(0.09) : Pal.fa(0.05)
+                 border.color: row.nUrgent ? Qt.rgba(1, 0.27, 0.27, 0.35) : view.sys.colLine
+                 border.width: 1
+                 Behavior on color { ColorAnimation { duration: 140 } }
+@@ -148,7 +148,7 @@
+                         Layout.preferredHeight: 30
+                         Layout.alignment: Qt.AlignTop
+                         radius: 9
+-                        color: row.nUrgent ? Qt.rgba(1, 0.27, 0.27, 0.18) : Qt.rgba(1, 1, 1, 0.08)
++                        color: row.nUrgent ? Qt.rgba(1, 0.27, 0.27, 0.18) : Pal.fa(0.08)
+                         Image {
+                             id: rowIcon
+                             anchors.fill: parent
+@@ -185,7 +185,7 @@
+                             }
+                             Text {
+                                 text: row.nApp + "  " + row.nTime
+-                                color: Qt.rgba(1, 1, 1, 0.30)
++                                color: Pal.fa(0.30)
+                                 font { family: view.sys.fontFam; pixelSize: view.sys.fontSize - 5 }
+                             }
+                         }
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/OverviewView.qml panacea/OverviewView.qml
+--- a/OverviewView.qml	2026-10-19 21:28:06.962234439 +0530
++++ b/OverviewView.qml	2026-10-19 21:57:24.619044905 +0530
+@@ -123,7 +123,7 @@
+         Text {
+             Layout.alignment: Qt.AlignHCenter
+             text: view.sys.tr("Рабочие столы")
+-            color: Qt.rgba(1, 1, 1, 0.55)
++            color: Pal.fa(0.55)
+             font {
+                 family: view.sys.fontFam; pixelSize: view.sys.fontSize - 2
+                 bold: true; capitalization: Font.AllUppercase; letterSpacing: 2
+@@ -153,8 +153,8 @@
+                     radius: 16
+                     color: Qt.rgba(0.06, 0.06, 0.07, 0.92)
+                     border.color: card.picked ? view.sys.colOn
+-                                : card.live ? Qt.rgba(1, 1, 1, 0.35)
+-                                            : Qt.rgba(1, 1, 1, 0.12)
++                                : card.live ? Pal.fa(0.35)
++                                            : Pal.fa(0.12)
+                     border.width: card.picked ? 2 : 1
+                     clip: true
+                     Behavior on border.color { ColorAnimation { duration: 150 } }
+@@ -192,8 +192,8 @@
+                             Rectangle {
+                                 anchors.fill: parent
+                                 radius: 6
+-                                color: Qt.rgba(1, 1, 1, 0.05)
+-                                border.color: Qt.rgba(1, 1, 1, 0.10)
++                                color: Pal.fa(0.05)
++                                border.color: Pal.fa(0.10)
+                                 border.width: 1
+                                 clip: true
+ 
+@@ -223,7 +223,7 @@
+                                     visible: parent.children.length > 0
+                                              && !parent.children[0].hasContent
+                                     text: String(win.geo.cls || "")
+-                                    color: Qt.rgba(1, 1, 1, 0.45)
++                                    color: Pal.fa(0.45)
+                                     elide: Text.ElideRight
+                                     width: parent.width - 12
+                                     horizontalAlignment: Text.AlignHCenter
+@@ -253,7 +253,7 @@
+                             id: wsNum
+                             anchors.centerIn: parent
+                             text: card.modelData.name
+-                            color: "#ffffff"
++                            color: Pal.fg
+                             font {
+                                 family: view.sys.fontFam; pixelSize: 12
+                                 bold: card.picked || card.live
+@@ -285,7 +285,7 @@
+         Text {
+             Layout.alignment: Qt.AlignHCenter
+             text: view.sys.tr("Стрелки — выбрать · Enter — перейти · Esc — закрыть")
+-            color: Qt.rgba(1, 1, 1, 0.30)
++            color: Pal.fa(0.30)
+             font { family: view.sys.fontFam; pixelSize: view.sys.fontSize - 4 }
+         }
+     }
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/Pal.qml panacea/Pal.qml
+--- a/Pal.qml	1970-01-01 05:30:00.000000000 +0530
++++ b/Pal.qml	2026-10-19 21:57:24.600402325 +0530
+@@ -0,0 +1,46 @@
++pragma Singleton
++
++import QtQuick
++import Quickshell
++import Quickshell.Io
++
++// Light/dark switch for the whole pill (local addition, not upstream Panacea).
++//
++// Panacea's Nothing look is white ink on a black pill. On a pitch-black
++// wallpaper (or a Shan Shui painting on black paper) a black pill vanishes, so
++// the pill flips to beige with pitch-black ink. Every white literal in the
++// views goes through `fg` / `fa()` here; `bg` is the pill itself.
++// island-backdrop.sh measures what is right behind the pill.
++Singleton {
++    id: pal
++
++    property bool light: false
++
++    readonly property color beige: "#E8DCC4"
++    readonly property color fg: light ? "#000000" : "#ffffff"
++    readonly property color bg: light ? beige : "#000000"
++    // white-at-alpha in the original, i.e. "ink at this alpha"
++    function fa(a) { return light ? Qt.rgba(0, 0, 0, a) : Qt.rgba(1, 1, 1, a) }
++
++    Process {
++        id: probe
++        command: [Quickshell.env("HOME") + "/.config/omarchy/plugins/anshu.bar/island-backdrop.sh"]
++        stdout: StdioCollector {
++            waitForEnd: true
++            onStreamFinished: {
++                try {
++                    var lum = Number(JSON.parse(String(text || "").trim()).lum)
++                    // hysteresis: a wallpaper on the edge does not flicker
++                    pal.light = pal.light ? lum < 0.08 : lum < 0.05
++                } catch (e) {}
++            }
++        }
++    }
++    Timer {
++        interval: 3000
++        repeat: true
++        running: true
++        triggeredOnStart: true
++        onTriggered: if (!probe.running) probe.running = true
++    }
++}
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/PillMock.qml panacea/PillMock.qml
+--- a/PillMock.qml	2026-10-19 21:28:06.962234439 +0530
++++ b/PillMock.qml	2026-10-19 21:57:24.619149686 +0530
+@@ -11,7 +11,7 @@
+     id: mock
+     property var sys
+     property string pos: "top"          // top | bottom | left | right
+-    property color fgCol: "#ffffff"
++    property color fgCol: Pal.fg
+     property color onCol: "#3b82f6"
+     // во сколько раз макет меньше настоящего экрана
+     property real k: 0.4
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/PowerView.qml panacea/PowerView.qml
+--- a/PowerView.qml	2026-10-19 21:28:06.962234439 +0530
++++ b/PowerView.qml	2026-10-19 21:57:24.619243396 +0530
+@@ -116,7 +116,7 @@
+ 
+                     // база всегда нейтральная; подтверждение красит верхний слой
+                     color: btnMa.containsMouse || isCurrent
+-                           ? Qt.rgba(1, 1, 1, 0.10) : Qt.rgba(1, 1, 1, 0.05)
++                           ? Pal.fa(0.10) : Pal.fa(0.05)
+ 
+                     // отдельный слой для подсветки подтверждения
+                     Rectangle {
+@@ -128,7 +128,7 @@
+                     }
+ 
+                     border.color: isArmed ? modelData.accent
+-                                : isCurrent ? Qt.rgba(1, 1, 1, 0.22)
++                                : isCurrent ? Pal.fa(0.22)
+                                             : view.sys.colLine
+                     border.width: 1
+                     Behavior on color { ColorAnimation { duration: 160 } }
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/RecordView.qml panacea/RecordView.qml
+--- a/RecordView.qml	2026-10-19 21:28:06.962234439 +0530
++++ b/RecordView.qml	2026-10-19 21:57:24.619355958 +0530
+@@ -36,7 +36,7 @@
+         implicitHeight: 30
+         radius: 15
+         color: active ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g, view.sys.colOn.b, 0.18)
+-             : (chipMa.containsMouse ? Qt.rgba(1, 1, 1, 0.10) : Qt.rgba(1, 1, 1, 0.05))
++             : (chipMa.containsMouse ? Pal.fa(0.10) : Pal.fa(0.05))
+         border.color: active ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g,
+                                        view.sys.colOn.b, 0.45)
+                              : view.sys.colLine
+@@ -76,7 +76,7 @@
+         Layout.fillWidth: true
+         Layout.preferredHeight: 40
+         radius: 12
+-        color: tglMa.containsMouse ? Qt.rgba(1, 1, 1, 0.09) : Qt.rgba(1, 1, 1, 0.04)
++        color: tglMa.containsMouse ? Pal.fa(0.09) : Pal.fa(0.04)
+         Behavior on color { ColorAnimation { duration: 150 } }
+         opacity: view.sys.recActive ? 0.45 : 1
+ 
+@@ -104,7 +104,7 @@
+                 Layout.preferredWidth: 38
+                 Layout.preferredHeight: 21
+                 radius: 11
+-                color: parent.parent.checked ? view.sys.colOn : Qt.rgba(1, 1, 1, 0.14)
++                color: parent.parent.checked ? view.sys.colOn : Pal.fa(0.14)
+                 Behavior on color { ColorAnimation { duration: 180 } }
+                 Rectangle {
+                     width: 17; height: 17; radius: 9
+@@ -114,7 +114,7 @@
+                     // ней пропадает — тумблер выглядит просто белой плашкой.
+                     // На выключенной дорожка тёмная, там белый и нужен.
+                     color: parent.parent.parent.checked
+-                           ? view.sys.fgOn(view.sys.colOn) : "#ffffff"
++                           ? view.sys.fgOn(view.sys.colOn) : Pal.fg
+                     Behavior on x {
+                         NumberAnimation { duration: 180; easing.type: Easing.OutCubic }
+                     }
+@@ -142,7 +142,7 @@
+         Layout.preferredHeight: 30
+         radius: 9
+         color: micMa.containsMouse ? view.sys.colHover
+-             : (active ? Qt.rgba(1, 1, 1, 0.06) : "transparent")
++             : (active ? Pal.fa(0.06) : "transparent")
+         Behavior on color { ColorAnimation { duration: 130 } }
+ 
+         RowLayout {
+@@ -189,7 +189,7 @@
+         Layout.preferredHeight: 46
+         radius: 14
+         color: filled ? Qt.rgba(tint.r, tint.g, tint.b, bigMa.containsMouse ? 0.34 : 0.22)
+-                      : (bigMa.containsMouse ? Qt.rgba(1, 1, 1, 0.10) : Qt.rgba(1, 1, 1, 0.05))
++                      : (bigMa.containsMouse ? Pal.fa(0.10) : Pal.fa(0.05))
+         border.color: filled ? Qt.rgba(tint.r, tint.g, tint.b, 0.5) : view.sys.colLine
+         border.width: 1
+         Behavior on color { ColorAnimation { duration: 150 } }
+@@ -447,7 +447,7 @@
+             Layout.fillWidth: true
+             visible: !view.sys.recActive
+             text: view.sys.tr("Файл ляжет в ") + view.sys.cfg.recDir
+-            color: Qt.rgba(1, 1, 1, 0.30)
++            color: Pal.fa(0.30)
+             elide: Text.ElideMiddle
+             font { family: view.sys.fontFam; pixelSize: view.sys.fontSize - 5 }
+         }
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/SetAppearance.qml panacea/SetAppearance.qml
+--- a/SetAppearance.qml	2026-10-19 21:28:06.962234439 +0530
++++ b/SetAppearance.qml	2026-10-19 21:57:24.619505400 +0530
+@@ -290,7 +290,7 @@
+                     Layout.fillWidth: true
+                     Layout.preferredHeight: 32
+                     radius: 8
+-                    color: sndMa.containsMouse ? Qt.rgba(1, 1, 1, 0.12) : Qt.rgba(1, 1, 1, 0.05)
++                    color: sndMa.containsMouse ? Pal.fa(0.12) : Pal.fa(0.05)
+                     border.color: sndMa.containsMouse ? page.sys.colOn : page.sys.colLine
+                     border.width: 1
+                     Behavior on color { ColorAnimation { duration: 120 } }
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/SetButton.qml panacea/SetButton.qml
+--- a/SetButton.qml	2026-10-19 21:28:06.962234439 +0530
++++ b/SetButton.qml	2026-10-19 21:57:24.619608125 +0530
+@@ -34,7 +34,7 @@
+            ? (ma.containsMouse
+               ? Qt.rgba(btn.sys.colOn.r, btn.sys.colOn.g, btn.sys.colOn.b, 0.34)
+               : Qt.rgba(btn.sys.colOn.r, btn.sys.colOn.g, btn.sys.colOn.b, 0.22))
+-           : (ma.containsMouse ? Qt.rgba(1, 1, 1, 0.10) : "transparent")
++           : (ma.containsMouse ? Pal.fa(0.10) : "transparent")
+     border.width: 1
+     border.color: btn.primary ? btn.sys.colOn : btn.sys.colLine
+ 
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/SetKeys.qml panacea/SetKeys.qml
+--- a/SetKeys.qml	2026-10-19 21:28:06.962234439 +0530
++++ b/SetKeys.qml	2026-10-19 21:57:24.619826530 +0530
+@@ -283,7 +283,7 @@
+             radius: 9
+             color: brow.capturing
+                    ? Qt.rgba(page.sys.colOn.r, page.sys.colOn.g, page.sys.colOn.b, 0.20)
+-                   : (bMa.containsMouse ? Qt.rgba(1, 1, 1, 0.12) : Qt.rgba(1, 1, 1, 0.07))
++                   : (bMa.containsMouse ? Pal.fa(0.12) : Pal.fa(0.07))
+             border.color: brow.capturing ? page.sys.colOn : page.sys.colLine
+             border.width: 1
+             Behavior on color { ColorAnimation { duration: 160 } }
+@@ -398,7 +398,7 @@
+     Text {
+         Layout.fillWidth: true
+         text: page.sys.tr("Нажмите на сочетание, чтобы изменить. × убирает клавишу.")
+-        color: Qt.rgba(1, 1, 1, 0.32)
++        color: Pal.fa(0.32)
+         font { family: page.sys.fontBody; pixelSize: page.sys.fontSize - 4 }
+     }
+ 
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/shell.qml panacea/shell.qml
+--- a/shell.qml	2026-10-19 21:28:06.965234483 +0530
++++ b/shell.qml	2026-10-19 21:58:11.676298002 +0530
+@@ -41,7 +41,7 @@
+             property string fontFam: "JetBrainsMono Nerd Font"
+             property int    fontSize: 15
+             property int    iconSize: 17
+-            property string colFg:    "#ffffff"
++            property string colFg:    Pal.fg
+             property real   mutedAlpha: 0.45
+             property string colOn:    "#3b82f6"
+             property int    pillH:  38
+@@ -399,7 +399,7 @@
+     readonly property var defaultCfg: ({
+         fontFam: "JetBrainsMono Nerd Font", fontBody: "JetBrainsMono Nerd Font",
+         fontDisplay: "JetBrainsMono Nerd Font", fontSize: 15, iconSize: 17,
+-        colFg: "#ffffff", colOn: "#ffffff", mutedAlpha: 0.45, themeId: "nothing",
++        colFg: Pal.fg, colOn: Pal.fg, mutedAlpha: 0.45, themeId: "nothing",
+         spacingUnit: 8, smallRadius: 10,
+         pillH: 38, pillPos: "top", pillScreen: "auto", pillAutoHide: false, pillOverlay: true,
+         pillKeepVisible: false, closePanaceaFirst: true,
+@@ -1370,16 +1370,16 @@
+     // арифметическое трёх каналов ошибается как раз на жёлтом и голубом.
+     function fgOn(c) {
+         return (0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b) > 0.6
+-               ? root.colBg : "#ffffff";
++               ? root.colBg : (Pal.light ? Pal.bg : Pal.fg);
+     }
+ 
+-    readonly property color colBg:     theme.bg
+-    readonly property color colFg:     theme.fg
++    readonly property color colBg:     Pal.light ? Pal.bg : theme.bg
++    readonly property color colFg:     Pal.light ? Pal.fg : theme.fg
+     readonly property color colMuted:  Qt.rgba(colFg.r, colFg.g, colFg.b, cfg.mutedAlpha)
+     readonly property color colLine:   Qt.rgba(colFg.r, colFg.g, colFg.b, 0.10)
+     readonly property color colHover:  Qt.rgba(colFg.r, colFg.g, colFg.b, 0.10)
+-    readonly property color colOn:     theme.on
+-    readonly property color colOk:     theme.ok
++    readonly property color colOn:     Pal.light ? Pal.fg : theme.on
++    readonly property color colOk:     Pal.light ? Pal.fg : theme.ok
+     readonly property color colCrit:   theme.crit
+ 
+     // Цвета состояний, которых в палитре темы нет. На теме Nothing цветного
+@@ -4851,7 +4851,7 @@
+                 Layout.alignment: Qt.AlignTop
+                 radius: 10
+                 color: root.notifUrgent ? Qt.rgba(1, 0.27, 0.27, 0.18)
+-                                        : Qt.rgba(1, 1, 1, 0.08)
++                                        : Pal.fa(0.08)
+ 
+                 Image {
+                     id: toastIcon
+@@ -5075,7 +5075,7 @@
+                     anchors.fill: parent
+                     visible: !root.btToastDisconnected && root.btConnectedBattery < 0
+                     radius: 14
+-                    color: Qt.rgba(1, 1, 1, 0.10)
++                    color: Pal.fa(0.10)
+                     Text {
+                         anchors.centerIn: parent
+                         text: String.fromCodePoint(0xF00AF)
+@@ -5384,14 +5384,14 @@
+                     radius: 9
+                     implicitWidth: chipTxt.implicitWidth + 20
+                     implicitHeight: 26
+-                    color: chipMa.containsMouse ? root.colOn : Qt.rgba(1, 1, 1, 0.10)
++                    color: chipMa.containsMouse ? root.colOn : Pal.fa(0.10)
+                     Behavior on color { ColorAnimation { duration: 120 } }
+ 
+                     Text {
+                         id: chipTxt
+                         anchors.centerIn: parent
+                         text: modelData.name
+-                        color: chipMa.containsMouse ? "#ffffff" : root.colFg
++                        color: chipMa.containsMouse ? Pal.fg : root.colFg
+                         font { family: root.fontFam; pixelSize: root.fontSize - 2; bold: true }
+                     }
+                     MouseArea {
+@@ -5492,7 +5492,7 @@
+                 Layout.preferredHeight: 5
+                 Layout.alignment: Qt.AlignVCenter
+                 radius: 3
+-                color: Qt.rgba(1, 1, 1, 0.16)
++                color: Pal.fa(0.16)
+ 
+                 Rectangle {
+                     width: parent.width * (root.osdMuted ? 0 : root.osdValue)
+@@ -5907,7 +5907,7 @@
+                         Layout.preferredWidth: 22
+                         Layout.preferredHeight: 22
+                         radius: 7
+-                        color: Qt.rgba(1, 1, 1, 0.08)
++                        color: Pal.fa(0.08)
+ 
+                         Image {
+                             id: vertArt
+@@ -5925,7 +5925,7 @@
+                             anchors.fill: parent
+                             visible: false
+                             layer.enabled: true
+-                            Rectangle { anchors.fill: parent; radius: 7; color: "#ffffff" }
++                            Rectangle { anchors.fill: parent; radius: 7; color: Pal.fg }
+                         }
+                         MultiEffect {
+                             anchors.fill: parent
+@@ -6006,7 +6006,7 @@
+                     Layout.preferredWidth: 14
+                     Layout.preferredHeight: 1
+                     visible: root.mediaActive
+-                    color: Qt.rgba(1, 1, 1, 0.18)
++                    color: Pal.fa(0.18)
+                 }
+ 
+                 // день недели столбиком
+@@ -6089,8 +6089,8 @@
+                 height: 4
+                 radius: 2
+                 color: root.pillDragging ? root.colOn
+-                     : (handleMa.containsMouse ? Qt.rgba(1, 1, 1, 0.45)
+-                                               : Qt.rgba(1, 1, 1, 0.18))
++                     : (handleMa.containsMouse ? Pal.fa(0.45)
++                                               : Pal.fa(0.18))
+                 Behavior on color { ColorAnimation { duration: 140 } }
+             }
+ 
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/VaultSaveView.qml panacea/VaultSaveView.qml
+--- a/VaultSaveView.qml	2026-10-19 21:28:06.963234454 +0530
++++ b/VaultSaveView.qml	2026-10-19 21:57:24.620492353 +0530
+@@ -73,7 +73,7 @@
+             Layout.fillWidth: true
+             Layout.preferredHeight: 40
+             radius: 12
+-            color: Qt.rgba(1, 1, 1, 0.06)
++            color: Pal.fa(0.06)
+             border.width: 1
+             border.color: pw.activeFocus ? view.sys.colOn : view.sys.colLine
+ 
+@@ -94,7 +94,7 @@
+                     anchors.verticalCenter: parent.verticalCenter
+                     visible: pw.text.length === 0
+                     text: view.sys.tr("Пароль пользователя")
+-                    color: Qt.rgba(1, 1, 1, 0.28)
++                    color: Pal.fa(0.28)
+                     font { family: view.sys.fontFam; pixelSize: view.sys.fontSize - 1 }
+                 }
+             }
+@@ -118,7 +118,7 @@
+                 Layout.fillWidth: true
+                 Layout.preferredHeight: 36
+                 radius: 11
+-                color: Qt.rgba(1, 1, 1, 0.06)
++                color: Pal.fa(0.06)
+                 border.width: 1
+                 border.color: name.activeFocus ? view.sys.colOn : view.sys.colLine
+                 TextInput {
+@@ -136,7 +136,7 @@
+                         anchors.verticalCenter: parent.verticalCenter
+                         visible: name.text.length === 0
+                         text: view.sys.tr("Откуда пароль")
+-                        color: Qt.rgba(1, 1, 1, 0.28)
++                        color: Pal.fa(0.28)
+                         font { family: view.sys.fontFam; pixelSize: view.sys.fontSize - 2 }
+                     }
+                 }
+@@ -146,7 +146,7 @@
+                 Layout.fillWidth: true
+                 Layout.preferredHeight: 36
+                 radius: 11
+-                color: Qt.rgba(1, 1, 1, 0.06)
++                color: Pal.fa(0.06)
+                 border.width: 1
+                 border.color: login.activeFocus ? view.sys.colOn : view.sys.colLine
+                 TextInput {
+@@ -163,7 +163,7 @@
+                         anchors.verticalCenter: parent.verticalCenter
+                         visible: login.text.length === 0
+                         text: view.sys.tr("Логин (необязательно)")
+-                        color: Qt.rgba(1, 1, 1, 0.28)
++                        color: Pal.fa(0.28)
+                         font { family: view.sys.fontFam; pixelSize: view.sys.fontSize - 2 }
+                     }
+                 }
+@@ -186,7 +186,7 @@
+                 Layout.fillWidth: true
+                 Layout.preferredHeight: 36
+                 radius: 11
+-                color: noMa.containsMouse ? Qt.rgba(1, 1, 1, 0.13) : Qt.rgba(1, 1, 1, 0.06)
++                color: noMa.containsMouse ? Pal.fa(0.13) : Pal.fa(0.06)
+                 Text {
+                     anchors.centerIn: parent
+                     text: view.sys.tr("Не сохранять")
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/VaultView.qml panacea/VaultView.qml
+--- a/VaultView.qml	2026-10-19 21:28:06.963234454 +0530
++++ b/VaultView.qml	2026-10-19 21:57:24.620627764 +0530
+@@ -49,7 +49,7 @@
+         Layout.fillWidth: true
+         Layout.preferredHeight: 32
+         radius: 10
+-        color: Qt.rgba(1, 1, 1, 0.06)
++        color: Pal.fa(0.06)
+         border.width: 1
+         border.color: fin.activeFocus ? view.sys.colOn : view.sys.colLine
+         TextInput {
+@@ -68,7 +68,7 @@
+                 anchors.verticalCenter: parent.verticalCenter
+                 visible: fin.text.length === 0
+                 text: fld.hint
+-                color: Qt.rgba(1, 1, 1, 0.26)
++                color: Pal.fa(0.26)
+                 font { family: view.sys.fontFam; pixelSize: view.sys.fontSize - 3 }
+             }
+         }
+@@ -89,7 +89,7 @@
+                 Layout.preferredHeight: 40
+                 radius: 12
+                 color: view.sys.vaultUnlocked ? Qt.rgba(view.sys.colOk.r, view.sys.colOk.g, view.sys.colOk.b, 0.16)
+-                                              : Qt.rgba(1, 1, 1, 0.08)
++                                              : Pal.fa(0.08)
+                 Glyph {
+                     anchors.fill: parent
+                     glyph: String.fromCodePoint(view.sys.vaultUnlocked ? 0xF0FC6 : 0xF033E)
+@@ -124,7 +124,7 @@
+                 Layout.preferredWidth: 34
+                 Layout.preferredHeight: 34
+                 radius: 11
+-                color: lockMa.containsMouse ? Qt.rgba(1, 1, 1, 0.13) : Qt.rgba(1, 1, 1, 0.06)
++                color: lockMa.containsMouse ? Pal.fa(0.13) : Pal.fa(0.06)
+                 Glyph {
+                     anchors.fill: parent
+                     glyph: String.fromCodePoint(0xF033E)
+@@ -150,7 +150,7 @@
+             Layout.fillWidth: true
+             Layout.preferredHeight: 42
+             radius: 12
+-            color: Qt.rgba(1, 1, 1, 0.06)
++            color: Pal.fa(0.06)
+             border.width: 1
+             border.color: pw.activeFocus ? view.sys.colOn : view.sys.colLine
+             Behavior on border.color { ColorAnimation { duration: 140 } }
+@@ -175,7 +175,7 @@
+                         anchors.verticalCenter: parent.verticalCenter
+                         visible: pw.text.length === 0
+                         text: view.sys.tr("Пароль")
+-                        color: Qt.rgba(1, 1, 1, 0.28)
++                        color: Pal.fa(0.28)
+                         font { family: view.sys.fontFam; pixelSize: view.sys.fontSize }
+                     }
+                 }
+@@ -202,7 +202,7 @@
+             visible: !view.sys.vaultUnlocked
+             Layout.fillWidth: true
+             text: view.sys.tr("Хранилище шифруется этим же паролем и закрывается само через 15 минут простоя.")
+-            color: Qt.rgba(1, 1, 1, 0.30)
++            color: Pal.fa(0.30)
+             wrapMode: Text.WordWrap
+             font { family: view.sys.fontFam; pixelSize: view.sys.fontSize - 4 }
+         }
+@@ -217,7 +217,7 @@
+                 Layout.fillWidth: true
+                 Layout.preferredHeight: 36
+                 radius: 11
+-                color: Qt.rgba(1, 1, 1, 0.06)
++                color: Pal.fa(0.06)
+                 border.width: 1
+                 border.color: search.activeFocus ? view.sys.colOn : view.sys.colLine
+ 
+@@ -235,7 +235,7 @@
+                         anchors.verticalCenter: parent.verticalCenter
+                         visible: search.text.length === 0
+                         text: view.sys.tr("Поиск")
+-                        color: Qt.rgba(1, 1, 1, 0.28)
++                        color: Pal.fa(0.28)
+                         font { family: view.sys.fontFam; pixelSize: view.sys.fontSize - 2 }
+                     }
+                 }
+@@ -246,7 +246,7 @@
+                 Layout.preferredWidth: 36
+                 Layout.preferredHeight: 36
+                 radius: 11
+-                color: scanMa.containsMouse ? Qt.rgba(1, 1, 1, 0.13) : Qt.rgba(1, 1, 1, 0.06)
++                color: scanMa.containsMouse ? Pal.fa(0.13) : Pal.fa(0.06)
+                 opacity: view.sys.browserScanning ? 0.6 : 1
+ 
+                 Glyph {
+@@ -280,7 +280,7 @@
+                 Layout.preferredWidth: 36
+                 Layout.preferredHeight: 36
+                 radius: 11
+-                color: addMa.containsMouse ? Qt.rgba(1, 1, 1, 0.13) : Qt.rgba(1, 1, 1, 0.06)
++                color: addMa.containsMouse ? Pal.fa(0.13) : Pal.fa(0.06)
+                 Glyph {
+                     anchors.fill: parent
+                     glyph: String.fromCodePoint(0xF0415)      // плюс
+@@ -370,7 +370,7 @@
+ 
+                 ScrollBar.vertical: ScrollBar {
+                     policy: ScrollBar.AsNeeded
+-                    contentItem: Rectangle { radius: 2; color: Qt.rgba(1, 1, 1, 0.22) }
++                    contentItem: Rectangle { radius: 2; color: Pal.fa(0.22) }
+                 }
+ 
+                 delegate: Rectangle {
+@@ -379,7 +379,7 @@
+                     width: ListView.view.width
+                     height: 44
+                     radius: 11
+-                    color: Qt.rgba(1, 1, 1, 0.05)
++                    color: Pal.fa(0.05)
+                     border.width: 1
+                     border.color: view.sys.colLine
+ 
+@@ -429,7 +429,7 @@
+                             Layout.preferredHeight: 30
+                             radius: 10
+                             color: impMa.containsMouse ? Qt.rgba(view.sys.colOk.r, view.sys.colOk.g, view.sys.colOk.b, 0.28)
+-                                                       : Qt.rgba(1, 1, 1, 0.07)
++                                                       : Pal.fa(0.07)
+                             Glyph {
+                                 anchors.fill: parent
+                                 glyph: String.fromCodePoint(0xF0415)   // плюс
+@@ -463,7 +463,7 @@
+ 
+             ScrollBar.vertical: ScrollBar {
+                 policy: ScrollBar.AsNeeded
+-                contentItem: Rectangle { radius: 2; color: Qt.rgba(1, 1, 1, 0.22) }
++                contentItem: Rectangle { radius: 2; color: Pal.fa(0.22) }
+             }
+ 
+             delegate: Rectangle {
+@@ -474,7 +474,7 @@
+                 width: list.width
+                 height: row.editing ? 112 : 56
+                 radius: 12
+-                color: rowMa.containsMouse ? Qt.rgba(1, 1, 1, 0.09) : Qt.rgba(1, 1, 1, 0.05)
++                color: rowMa.containsMouse ? Pal.fa(0.09) : Pal.fa(0.05)
+                 border.width: 1
+                 border.color: view.sys.colLine
+                 Behavior on height { NumberAnimation { duration: view.sys.animQuick } }
+@@ -501,7 +501,7 @@
+                             Layout.preferredWidth: 30
+                             Layout.preferredHeight: 30
+                             radius: 9
+-                            color: Qt.rgba(1, 1, 1, 0.08)
++                            color: Pal.fa(0.08)
+                             Glyph {
+                                 anchors.fill: parent
+                                 glyph: String.fromCodePoint(0xF0306)     // ключ
+@@ -537,7 +537,7 @@
+                             Layout.preferredWidth: 32
+                             Layout.preferredHeight: 32
+                             radius: 10
+-                            color: copyMa.containsMouse ? Qt.rgba(1, 1, 1, 0.14) : Qt.rgba(1, 1, 1, 0.07)
++                            color: copyMa.containsMouse ? Pal.fa(0.14) : Pal.fa(0.07)
+                             Glyph {
+                                 anchors.fill: parent
+                                 glyph: String.fromCodePoint(copyMa.done ? 0xF012C : 0xF018F)
+@@ -564,7 +564,7 @@
+                             Layout.preferredWidth: 32
+                             Layout.preferredHeight: 32
+                             radius: 10
+-                            color: editMa.containsMouse ? Qt.rgba(1, 1, 1, 0.14) : Qt.rgba(1, 1, 1, 0.07)
++                            color: editMa.containsMouse ? Pal.fa(0.14) : Pal.fa(0.07)
+                             Glyph {
+                                 anchors.fill: parent
+                                 glyph: String.fromCodePoint(0xF03EB)     // карандаш
+@@ -586,7 +586,7 @@
+                             Layout.preferredWidth: 32
+                             Layout.preferredHeight: 32
+                             radius: 10
+-                            color: delMa.containsMouse ? Qt.rgba(1, 0.27, 0.27, 0.18) : Qt.rgba(1, 1, 1, 0.07)
++                            color: delMa.containsMouse ? Qt.rgba(1, 0.27, 0.27, 0.18) : Pal.fa(0.07)
+                             Glyph {
+                                 anchors.fill: parent
+                                 glyph: String.fromCodePoint(0xF01B4)     // корзина
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/WallpapersView.qml panacea/WallpapersView.qml
+--- a/WallpapersView.qml	2026-10-19 21:28:06.963234454 +0530
++++ b/WallpapersView.qml	2026-10-19 21:57:24.620906287 +0530
+@@ -320,9 +320,9 @@
+                     color: tabBtn.picked
+                            ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g,
+                                      view.sys.colOn.b, 0.24)
+-                           : (tabMa.containsMouse ? Qt.rgba(1, 1, 1, 0.12)
+-                                                  : Qt.rgba(1, 1, 1, 0.06))
+-                    border.color: tabBtn.picked ? view.sys.colOn : Qt.rgba(1, 1, 1, 0.10)
++                           : (tabMa.containsMouse ? Pal.fa(0.12)
++                                                  : Pal.fa(0.06))
++                    border.color: tabBtn.picked ? view.sys.colOn : Pal.fa(0.10)
+                     border.width: 1
+                     Behavior on color { ColorAnimation { duration: 160 } }
+                     Behavior on border.color { ColorAnimation { duration: 160 } }
+@@ -453,7 +453,7 @@
+                         id: pulse
+                         anchors.fill: parent
+                         visible: img.status === Image.Loading
+-                        color: Qt.rgba(1, 1, 1, 0.06)
++                        color: Pal.fa(0.06)
+                         // именно по id: внутри анимации parent — null
+                         SequentialAnimation on opacity {
+                             running: pulse.visible
+@@ -480,7 +480,7 @@
+                         Rectangle {
+                             anchors.fill: parent
+                             radius: frame.r
+-                            color: "#ffffff"
++                            color: Pal.fg
+                         }
+                     }
+ 
+@@ -498,8 +498,8 @@
+                         radius: frame.r
+                         color: "transparent"
+                         border.color: card.wActive ? view.sys.colOn
+-                                    : card.centered ? Qt.rgba(1, 1, 1, 0.55)
+-                                                    : Qt.rgba(1, 1, 1, 0.10)
++                                    : card.centered ? Pal.fa(0.55)
++                                                    : Pal.fa(0.10)
+                         border.width: card.centered || card.wActive ? 2 : 1
+                         Behavior on border.color { ColorAnimation { duration: 200 } }
+                     }
+@@ -547,7 +547,7 @@
+                                 Text {
+                                     anchors.centerIn: parent
+                                     text: String.fromCodePoint(0xF012C)
+-                                    color: "#ffffff"
++                                    color: Pal.fg
+                                     font { family: view.sys.fontFam; pixelSize: 13 }
+                                 }
+                             }
+@@ -559,12 +559,12 @@
+                                 radius: 13
+                                 visible: card.wOwn && !card.wActive
+                                 color: delMa.containsMouse ? view.sys.colCrit
+-                                                           : Qt.rgba(1, 1, 1, 0.12)
++                                                           : Pal.fa(0.12)
+                                 Behavior on color { ColorAnimation { duration: 140 } }
+                                 Text {
+                                     anchors.centerIn: parent
+                                     text: String.fromCodePoint(0xF01B4)
+-                                    color: delMa.containsMouse ? "#ffffff" : view.sys.colMuted
++                                    color: delMa.containsMouse ? Pal.fg : view.sys.colMuted
+                                     font { family: view.sys.fontFam; pixelSize: 13 }
+                                 }
+                                 MouseArea {
+@@ -657,7 +657,7 @@
+                     Layout.preferredWidth: hintKey.implicitWidth + 16
+                     Layout.preferredHeight: 26
+                     radius: 8
+-                    color: Qt.rgba(1, 1, 1, 0.10)
++                    color: Pal.fa(0.10)
+                     Text {
+                         id: hintKey
+                         anchors.centerIn: parent
+@@ -684,7 +684,7 @@
+             Layout.preferredWidth: Math.max(196, liveRow.implicitWidth + 24)
+             Layout.preferredHeight: 38
+             radius: 13
+-            color: folderMa.containsMouse ? Qt.rgba(1, 1, 1, 0.14) : Qt.rgba(1, 1, 1, 0.06)
++            color: folderMa.containsMouse ? Pal.fa(0.14) : Pal.fa(0.06)
+             border.color: folderMa.containsMouse ? view.sys.colOn : view.sys.colLine
+             border.width: 1
+             Behavior on color { ColorAnimation { duration: 160 } }
+@@ -723,7 +723,7 @@
+             Layout.preferredWidth: Math.max(156, ownRow.implicitWidth + 24)
+             Layout.preferredHeight: 38
+             radius: 13
+-            color: addMa.containsMouse ? Qt.rgba(1, 1, 1, 0.14) : Qt.rgba(1, 1, 1, 0.06)
++            color: addMa.containsMouse ? Pal.fa(0.14) : Pal.fa(0.06)
+             border.color: addMa.containsMouse ? view.sys.colOn : view.sys.colLine
+             border.width: 1
+             Behavior on color { ColorAnimation { duration: 160 } }
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/WaveBars.qml panacea/WaveBars.qml
+--- a/WaveBars.qml	2026-10-19 21:28:06.963234454 +0530
++++ b/WaveBars.qml	2026-10-19 21:57:24.621078064 +0530
+@@ -12,7 +12,7 @@
+ Item {
+     id: wave
+ 
+-    property color barColor: "#ffffff"
++    property color barColor: Pal.fg
+     property bool  active: true
+     property int   barCount: 7
+     property real  gap: 2
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/WeatherDetailsView.qml panacea/WeatherDetailsView.qml
+--- a/WeatherDetailsView.qml	2026-10-19 21:28:06.963234454 +0530
++++ b/WeatherDetailsView.qml	2026-10-19 21:57:24.621358798 +0530
+@@ -78,7 +78,7 @@
+         anchors.fill: parent
+         radius: 26
+         color: Qt.rgba(0.065, 0.065, 0.075, 0.98)
+-        border.color: Qt.rgba(1, 1, 1, 0.08)
++        border.color: Pal.fa(0.08)
+         border.width: 1
+         clip: true
+ 
+@@ -112,7 +112,7 @@
+                     Text {
+                         text: (view.forecastData && view.forecastData.city)
+                               ? view.forecastData.city : (view.sys && view.sys.weatherPlace ? view.sys.weatherPlace : "...")
+-                        color: view.sys ? view.sys.colFg : "#ffffff"
++                        color: view.sys ? view.sys.colFg : Pal.fg
+                         font {
+                             family: view.sys ? view.sys.fontFam : "sans-serif"
+                             pixelSize: 17
+@@ -136,8 +136,8 @@
+                 Rectangle {
+                     id: refBtn
+                     width: 32; height: 32; radius: 16
+-                    color: refMa.containsMouse ? Qt.rgba(1, 1, 1, 0.10) : Qt.rgba(1, 1, 1, 0.04)
+-                    border.color: Qt.rgba(1, 1, 1, 0.08)
++                    color: refMa.containsMouse ? Pal.fa(0.10) : Pal.fa(0.04)
++                    border.color: Pal.fa(0.08)
+                     border.width: 1
+                     Behavior on color { ColorAnimation { duration: 120 } }
+ 
+@@ -145,7 +145,7 @@
+                         id: refIcon
+                         anchors.centerIn: parent
+                         text: "󰑐"
+-                        color: (view.sys && view.sys.weatherBusy) ? (view.sys ? view.sys.colCrit : "#d71921") : (view.sys ? view.sys.colFg : "#ffffff")
++                        color: (view.sys && view.sys.weatherBusy) ? (view.sys ? view.sys.colCrit : "#d71921") : (view.sys ? view.sys.colFg : Pal.fg)
+                         font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 14 }
+ 
+                         RotationAnimation on rotation {
+@@ -168,15 +168,15 @@
+                 Rectangle {
+                     id: closeBtn
+                     width: 32; height: 32; radius: 16
+-                    color: closeMa.containsMouse ? Qt.rgba(1, 1, 1, 0.12) : Qt.rgba(1, 1, 1, 0.04)
+-                    border.color: Qt.rgba(1, 1, 1, 0.08)
++                    color: closeMa.containsMouse ? Pal.fa(0.12) : Pal.fa(0.04)
++                    border.color: Pal.fa(0.08)
+                     border.width: 1
+                     Behavior on color { ColorAnimation { duration: 120 } }
+ 
+                     Text {
+                         anchors.centerIn: parent
+                         text: "✕"
+-                        color: closeMa.containsMouse ? (view.sys ? view.sys.colCrit : "#d71921") : (view.sys ? view.sys.colFg : "#ffffff")
++                        color: closeMa.containsMouse ? (view.sys ? view.sys.colCrit : "#d71921") : (view.sys ? view.sys.colFg : Pal.fg)
+                         font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 12; bold: true }
+                     }
+ 
+@@ -209,8 +209,8 @@
+                         Layout.fillWidth: true
+                         Layout.preferredHeight: 100
+                         radius: 16
+-                        color: Qt.rgba(1, 1, 1, 0.035)
+-                        border.color: Qt.rgba(1, 1, 1, 0.07)
++                        color: Pal.fa(0.035)
++                        border.color: Pal.fa(0.07)
+                         border.width: 1
+ 
+                         RowLayout {
+@@ -220,7 +220,7 @@
+ 
+                             Text {
+                                 text: view.iconGlyph(activeDay ? activeDay.icon : (currentObj ? currentObj.icon : (view.sys ? view.sys.weatherIcon : "03d")))
+-                                color: view.sys ? view.sys.colFg : "#ffffff"
++                                color: view.sys ? view.sys.colFg : Pal.fg
+                                 font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 42 }
+                             }
+ 
+@@ -232,7 +232,7 @@
+                                     spacing: 10
+                                     Text {
+                                         text: (activeDay ? activeDay.tempMax : (currentObj ? currentObj.temp : (view.sys && view.sys.weatherTemp ? view.sys.weatherTemp : "--"))) + "°"
+-                                        color: view.sys ? view.sys.colFg : "#ffffff"
++                                        color: view.sys ? view.sys.colFg : Pal.fg
+                                         font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 36; bold: true }
+                                     }
+ 
+@@ -241,7 +241,7 @@
+                                         visible: activeDay !== null
+                                         Layout.alignment: Qt.AlignVCenter
+                                         radius: 6
+-                                        color: Qt.rgba(1, 1, 1, 0.06)
++                                        color: Pal.fa(0.06)
+                                         implicitWidth: rangeText.implicitWidth + 12
+                                         implicitHeight: 20
+                                         Text {
+@@ -258,7 +258,7 @@
+                                     text: activeDay
+                                           ? activeDay.desc
+                                           : (currentObj ? currentObj.desc : (view.sys && view.sys.weatherDesc ? view.sys.weatherDesc : "—"))
+-                                    color: view.sys ? view.sys.colFg : "#ffffff"
++                                    color: view.sys ? view.sys.colFg : Pal.fg
+                                     font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 12; bold: true }
+                                     elide: Text.ElideRight
+                                     Layout.fillWidth: true
+@@ -280,8 +280,8 @@
+                             Layout.fillWidth: true
+                             Layout.fillHeight: true
+                             radius: 14
+-                            color: Qt.rgba(1, 1, 1, 0.035)
+-                            border.color: Qt.rgba(1, 1, 1, 0.06)
++                            color: Pal.fa(0.035)
++                            border.color: Pal.fa(0.06)
+                             border.width: 1
+ 
+                             ColumnLayout {
+@@ -303,7 +303,7 @@
+                                 }
+                                 Text {
+                                     text: (activeDay ? activeDay.feelsMax : (currentObj ? currentObj.feels : (view.sys && view.sys.weatherTemp ? view.sys.weatherTemp : "--"))) + "°"
+-                                    color: view.sys ? view.sys.colFg : "#fff"
++                                    color: view.sys ? view.sys.colFg : Pal.fg
+                                     font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 26; bold: true }
+                                 }
+                             }
+@@ -314,8 +314,8 @@
+                             Layout.fillWidth: true
+                             Layout.fillHeight: true
+                             radius: 14
+-                            color: Qt.rgba(1, 1, 1, 0.035)
+-                            border.color: Qt.rgba(1, 1, 1, 0.06)
++                            color: Pal.fa(0.035)
++                            border.color: Pal.fa(0.06)
+                             border.width: 1
+ 
+                             ColumnLayout {
+@@ -337,7 +337,7 @@
+                                 }
+                                 Text {
+                                     text: activeDay ? (activeDay.pop + "%") : ((currentObj ? currentObj.humidity : (view.sys && view.sys.weatherHumidity ? view.sys.weatherHumidity : "--")) + "%")
+-                                    color: (activeDay && activeDay.pop > 40) ? (view.sys ? view.sys.colCrit : "#d71921") : (view.sys ? view.sys.colFg : "#fff")
++                                    color: (activeDay && activeDay.pop > 40) ? (view.sys ? view.sys.colCrit : "#d71921") : (view.sys ? view.sys.colFg : Pal.fg)
+                                     font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 26; bold: true }
+                                 }
+                             }
+@@ -348,8 +348,8 @@
+                             Layout.fillWidth: true
+                             Layout.fillHeight: true
+                             radius: 14
+-                            color: Qt.rgba(1, 1, 1, 0.035)
+-                            border.color: Qt.rgba(1, 1, 1, 0.06)
++                            color: Pal.fa(0.035)
++                            border.color: Pal.fa(0.06)
+                             border.width: 1
+ 
+                             ColumnLayout {
+@@ -373,7 +373,7 @@
+                                     spacing: 4
+                                     Text {
+                                         text: String(activeDay ? activeDay.wind : (currentObj ? currentObj.wind : (view.sys && view.sys.weatherWind ? view.sys.weatherWind : "--")))
+-                                        color: view.sys ? view.sys.colFg : "#fff"
++                                        color: view.sys ? view.sys.colFg : Pal.fg
+                                         font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 26; bold: true }
+                                     }
+                                     Text {
+@@ -391,8 +391,8 @@
+                             Layout.fillWidth: true
+                             Layout.fillHeight: true
+                             radius: 14
+-                            color: Qt.rgba(1, 1, 1, 0.035)
+-                            border.color: Qt.rgba(1, 1, 1, 0.06)
++                            color: Pal.fa(0.035)
++                            border.color: Pal.fa(0.06)
+                             border.width: 1
+ 
+                             ColumnLayout {
+@@ -416,7 +416,7 @@
+                                     spacing: 4
+                                     Text {
+                                         text: currentObj ? String(currentObj.pressure) : "--"
+-                                        color: view.sys ? view.sys.colFg : "#fff"
++                                        color: view.sys ? view.sys.colFg : Pal.fg
+                                         font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 26; bold: true }
+                                     }
+                                     Text {
+@@ -434,8 +434,8 @@
+                             Layout.fillWidth: true
+                             Layout.fillHeight: true
+                             radius: 14
+-                            color: Qt.rgba(1, 1, 1, 0.035)
+-                            border.color: Qt.rgba(1, 1, 1, 0.06)
++                            color: Pal.fa(0.035)
++                            border.color: Pal.fa(0.06)
+                             border.width: 1
+ 
+                             ColumnLayout {
+@@ -459,7 +459,7 @@
+                                     spacing: 8
+                                     Text {
+                                         text: activeDay ? String(activeDay.uv) : "--"
+-                                        color: (activeDay && activeDay.uv >= 6) ? (view.sys ? view.sys.colCrit : "#d71921") : (view.sys ? view.sys.colFg : "#fff")
++                                        color: (activeDay && activeDay.uv >= 6) ? (view.sys ? view.sys.colCrit : "#d71921") : (view.sys ? view.sys.colFg : Pal.fg)
+                                         font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 26; bold: true }
+                                     }
+                                     Text {
+@@ -478,8 +478,8 @@
+                             Layout.fillWidth: true
+                             Layout.fillHeight: true
+                             radius: 14
+-                            color: Qt.rgba(1, 1, 1, 0.035)
+-                            border.color: Qt.rgba(1, 1, 1, 0.06)
++                            color: Pal.fa(0.035)
++                            border.color: Pal.fa(0.06)
+                             border.width: 1
+ 
+                             ColumnLayout {
+@@ -504,7 +504,7 @@
+                                     Layout.alignment: Qt.AlignHCenter
+                                     horizontalAlignment: Text.AlignHCenter
+                                     text: (activeDay && activeDay.sunrise && activeDay.sunset) ? (activeDay.sunrise + " / " + activeDay.sunset) : "--:--"
+-                                    color: view.sys ? view.sys.colFg : "#fff"
++                                    color: view.sys ? view.sys.colFg : Pal.fg
+                                     font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 17; bold: true }
+                                 }
+                             }
+@@ -527,7 +527,7 @@
+                             Item { Layout.fillWidth: true }
+                             Text {
+                                 text: "◀  ▶"
+-                                color: Qt.rgba(1, 1, 1, 0.25)
++                                color: Pal.fa(0.25)
+                                 font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 9 }
+                             }
+                         }
+@@ -566,9 +566,9 @@
+                                         width: 66
+                                         height: 100
+                                         radius: 13
+-                                        color: index === 0 ? Qt.rgba(1, 1, 1, 0.10)
+-                                                           : (hMa.containsMouse ? Qt.rgba(1, 1, 1, 0.06) : Qt.rgba(1, 1, 1, 0.025))
+-                                        border.color: index === 0 ? (view.sys ? view.sys.colCrit : "#d71921") : Qt.rgba(1, 1, 1, 0.06)
++                                        color: index === 0 ? Pal.fa(0.10)
++                                                           : (hMa.containsMouse ? Pal.fa(0.06) : Pal.fa(0.025))
++                                        border.color: index === 0 ? (view.sys ? view.sys.colCrit : "#d71921") : Pal.fa(0.06)
+                                         border.width: 1
+                                         Behavior on color { ColorAnimation { duration: 120 } }
+ 
+@@ -586,14 +586,14 @@
+                                             Text {
+                                                 Layout.alignment: Qt.AlignHCenter
+                                                 text: view.iconGlyph(modelData.icon)
+-                                                color: view.sys ? view.sys.colFg : "#ffffff"
++                                                color: view.sys ? view.sys.colFg : Pal.fg
+                                                 font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 18 }
+                                             }
+ 
+                                             Text {
+                                                 Layout.alignment: Qt.AlignHCenter
+                                                 text: modelData.temp + "°"
+-                                                color: view.sys ? view.sys.colFg : "#ffffff"
++                                                color: view.sys ? view.sys.colFg : Pal.fg
+                                                 font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 12; bold: true }
+                                             }
+ 
+@@ -647,9 +647,9 @@
+                                 Layout.fillHeight: true
+                                 radius: 14
+                                 color: view.selectedDayIndex === index
+-                                       ? Qt.rgba(1, 1, 1, 0.12)
+-                                       : (dayMa.containsMouse ? Qt.rgba(1, 1, 1, 0.05) : Qt.rgba(1, 1, 1, 0.025))
+-                                border.color: view.selectedDayIndex === index ? (view.sys ? view.sys.colCrit : "#d71921") : Qt.rgba(1, 1, 1, 0.06)
++                                       ? Pal.fa(0.12)
++                                       : (dayMa.containsMouse ? Pal.fa(0.05) : Pal.fa(0.025))
++                                border.color: view.selectedDayIndex === index ? (view.sys ? view.sys.colCrit : "#d71921") : Pal.fa(0.06)
+                                 border.width: 1
+                                 Behavior on color { ColorAnimation { duration: 120 } }
+ 
+@@ -661,7 +661,7 @@
+                                     anchors.verticalCenter: parent.verticalCenter
+                                     width: 74
+                                     text: view.dayName(dayItem.modelData.date, dayItem.index)
+-                                    color: dayItem.index === 0 ? (view.sys ? view.sys.colCrit : "#d71921") : (view.sys ? view.sys.colFg : "#ffffff")
++                                    color: dayItem.index === 0 ? (view.sys ? view.sys.colCrit : "#d71921") : (view.sys ? view.sys.colFg : Pal.fg)
+                                     font {
+                                         family: view.sys ? view.sys.fontFam : "sans-serif"
+                                         pixelSize: 11
+@@ -679,7 +679,7 @@
+                                     width: 20
+                                     horizontalAlignment: Text.AlignHCenter
+                                     text: view.iconGlyph(dayItem.modelData.icon)
+-                                    color: view.sys ? view.sys.colFg : "#ffffff"
++                                    color: view.sys ? view.sys.colFg : Pal.fg
+                                     font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 16 }
+                                 }
+ 
+@@ -718,7 +718,7 @@
+                                     width: 20
+                                     horizontalAlignment: Text.AlignLeft
+                                     text: dayItem.modelData.tempMax + "°"
+-                                    color: view.sys ? view.sys.colFg : "#fff"
++                                    color: view.sys ? view.sys.colFg : Pal.fg
+                                     font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 11; bold: true }
+                                 }
+ 
+@@ -735,7 +735,7 @@
+                                     Rectangle {
+                                         anchors.fill: parent
+                                         radius: 2.5
+-                                        color: Qt.rgba(1, 1, 1, 0.08)
++                                        color: Pal.fa(0.08)
+                                     }
+ 
+                                     Rectangle {
+@@ -745,7 +745,7 @@
+                                         radius: 2.5
+                                         color: view.selectedDayIndex === dayItem.index
+                                                ? (view.sys ? view.sys.colCrit : "#d71921")
+-                                               : Qt.rgba(1, 1, 1, 0.75)
++                                               : Pal.fa(0.75)
+                                     }
+                                 }
+ 
+diff -ruN -x '*.bak*' -x last_wifi_ssid -x settings.json a/WidgetsView.qml panacea/WidgetsView.qml
+--- a/WidgetsView.qml	2026-10-19 21:28:06.963234454 +0530
++++ b/WidgetsView.qml	2026-10-19 21:57:24.621744196 +0530
+@@ -75,7 +75,7 @@
+     component Card: Rectangle {
+         radius: 22
+         color: Qt.rgba(0.09, 0.09, 0.09, 0.96)
+-        border.color: Qt.rgba(1, 1, 1, 0.06)
++        border.color: Pal.fa(0.06)
+         border.width: 1
+     }
+ 
+@@ -85,7 +85,7 @@
+         property string value: ""
+         property real size: 14
+         property real gapRatio: 0.22
+-        property color color: view.sys ? view.sys.colFg : "#ffffff"
++        property color color: view.sys ? view.sys.colFg : Pal.fg
+ 
+         implicitWidth:  dots.implicitWidth
+         implicitHeight: dots.implicitHeight
+@@ -103,7 +103,7 @@
+     component WIcon: Item {
+         id: wico
+         property real size: 20
+-        property color color: view.sys ? view.sys.colFg : "#ffffff"
++        property color color: view.sys ? view.sys.colFg : Pal.fg
+ 
+         implicitWidth:  wdots.implicitWidth
+         implicitHeight: wdots.implicitHeight
+@@ -144,7 +144,7 @@
+                 Layout.preferredWidth: view.col
+                 Layout.preferredHeight: 140
+                 color: dateMa.containsMouse ? Qt.rgba(0.13, 0.13, 0.14, 0.98) : Qt.rgba(0.09, 0.09, 0.09, 0.96)
+-                border.color: dateMa.containsMouse ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g, view.sys.colOn.b, 0.4) : Qt.rgba(1, 1, 1, 0.06)
++                border.color: dateMa.containsMouse ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g, view.sys.colOn.b, 0.4) : Pal.fa(0.06)
+                 Behavior on color { ColorAnimation { duration: 120 } }
+                 Behavior on border.color { ColorAnimation { duration: 120 } }
+ 
+@@ -153,7 +153,7 @@
+                     value: view.sys ? view.sys.dayNum : ""
+                     size: 50
+                     gapRatio: 0.14
+-                    color: view.sys ? view.sys.colFg : "#ffffff"
++                    color: view.sys ? view.sys.colFg : Pal.fg
+                 }
+ 
+                 Text {
+@@ -194,7 +194,7 @@
+                 Layout.preferredWidth: view.col
+                 Layout.preferredHeight: 140
+                 color: clockMa.containsMouse ? Qt.rgba(0.13, 0.13, 0.14, 0.98) : Qt.rgba(0.09, 0.09, 0.09, 0.96)
+-                border.color: clockMa.containsMouse ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g, view.sys.colOn.b, 0.4) : Qt.rgba(1, 1, 1, 0.06)
++                border.color: clockMa.containsMouse ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g, view.sys.colOn.b, 0.4) : Pal.fa(0.06)
+                 Behavior on color { ColorAnimation { duration: 120 } }
+                 Behavior on border.color { ColorAnimation { duration: 120 } }
+ 
+@@ -246,7 +246,7 @@
+                                     if (i % 3 === 0) {
+                                         // 12, 3, 6, 9 часов: акцентные белые точки
+                                         ctx.arc(x, y, 2.0, 0, Math.PI * 2);
+-                                        ctx.fillStyle = "#ffffff";
++                                        ctx.fillStyle = Pal.fg;
+                                     } else {
+                                         // Промежуточные часы: полупрозрачные точки
+                                         ctx.arc(x, y, 1.3, 0, Math.PI * 2);
+@@ -264,7 +264,7 @@
+                                     if (j % 6 === 0) {
+                                         // 00 (полночь/верх), 06 (утро/право), 12 (полдень/низ), 18 (вечер/лево)
+                                         ctx.arc(x24, y24, 2.0, 0, Math.PI * 2);
+-                                        ctx.fillStyle = "#ffffff";
++                                        ctx.fillStyle = Pal.fg;
+                                     } else if (j % 2 === 0) {
+                                         // Четные часы: средние белые точки
+                                         ctx.arc(x24, y24, 1.4, 0, Math.PI * 2);
+@@ -292,7 +292,7 @@
+                             ctx.beginPath();
+                             ctx.lineWidth = 3.6;
+                             ctx.lineCap = "round";
+-                            ctx.strokeStyle = "#ffffff";
++                            ctx.strokeStyle = Pal.fg;
+                             ctx.moveTo(cx + Math.cos(hAng) * 3, cy + Math.sin(hAng) * 3);
+                             ctx.lineTo(cx + Math.cos(hAng) * (r * 0.50), cy + Math.sin(hAng) * (r * 0.50));
+                             ctx.stroke();
+@@ -359,7 +359,7 @@
+                         }
+                         size: 32
+                         gapRatio: 0.14
+-                        color: view.sys ? view.sys.colFg : "#ffffff"
++                        color: view.sys ? view.sys.colFg : Pal.fg
+                     }
+ 
+                     Caption {
+@@ -402,7 +402,7 @@
+                 Layout.preferredHeight: 140
+                 Layout.alignment: Qt.AlignTop
+                 color: wCardMa.containsMouse ? Qt.rgba(0.13, 0.13, 0.14, 0.98) : Qt.rgba(0.09, 0.09, 0.09, 0.96)
+-                border.color: wCardMa.containsMouse ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g, view.sys.colOn.b, 0.4) : Qt.rgba(1, 1, 1, 0.06)
++                border.color: wCardMa.containsMouse ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g, view.sys.colOn.b, 0.4) : Pal.fa(0.06)
+                 Behavior on color { ColorAnimation { duration: 120 } }
+                 Behavior on border.color { ColorAnimation { duration: 120 } }
+ 
+@@ -413,14 +413,14 @@
+                     Text {
+                         Layout.alignment: Qt.AlignHCenter
+                         text: (view.sys && view.sys.weatherReady) ? view.sys.weatherTemp + "°" : "--°"
+-                        color: view.sys ? view.sys.colFg : "#ffffff"
++                        color: view.sys ? view.sys.colFg : Pal.fg
+                         font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 26 }
+                     }
+ 
+                     WIcon {
+                         Layout.alignment: Qt.AlignHCenter
+                         size: 28
+-                        color: view.sys ? view.sys.colFg : "#ffffff"
++                        color: view.sys ? view.sys.colFg : Pal.fg
+                     }
+ 
+                     Text {
+@@ -451,7 +451,7 @@
+                 Layout.preferredHeight: 140
+                 Layout.alignment: Qt.AlignTop
+                 color: rightCardMa.containsMouse ? Qt.rgba(0.13, 0.13, 0.14, 0.98) : Qt.rgba(0.09, 0.09, 0.09, 0.96)
+-                border.color: rightCardMa.containsMouse ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g, view.sys.colOn.b, 0.4) : Qt.rgba(1, 1, 1, 0.06)
++                border.color: rightCardMa.containsMouse ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g, view.sys.colOn.b, 0.4) : Pal.fa(0.06)
+                 Behavior on color { ColorAnimation { duration: 120 } }
+                 Behavior on border.color { ColorAnimation { duration: 120 } }
+ 
+@@ -470,8 +470,8 @@
+                             Layout.fillWidth: true
+                             Layout.preferredHeight: 52
+                             radius: 14
+-                            color: Qt.rgba(1, 1, 1, 0.035)
+-                            border.color: Qt.rgba(1, 1, 1, 0.06)
++                            color: Pal.fa(0.035)
++                            border.color: Pal.fa(0.06)
+                             border.width: 1
+ 
+                             RowLayout {
+@@ -482,14 +482,14 @@
+                                 WIcon {
+                                     Layout.alignment: Qt.AlignVCenter
+                                     size: 18
+-                                    color: view.sys ? view.sys.colFg : "#ffffff"
++                                    color: view.sys ? view.sys.colFg : Pal.fg
+                                 }
+ 
+                                 Text {
+                                     Layout.fillWidth: true
+                                     Layout.alignment: Qt.AlignVCenter
+                                     text: (view.sys && view.sys.weatherReady) ? view.sys.weatherDesc : "—"
+-                                    color: view.sys ? view.sys.colFg : "#ffffff"
++                                    color: view.sys ? view.sys.colFg : Pal.fg
+                                     wrapMode: Text.WordWrap
+                                     maximumLineCount: 2
+                                     elide: Text.ElideRight
+@@ -515,8 +515,8 @@
+                                 Layout.fillWidth: true
+                                 Layout.preferredHeight: 60
+                                 radius: 16
+-                                color: Qt.rgba(1, 1, 1, 0.035)
+-                                border.color: Qt.rgba(1, 1, 1, 0.06)
++                                color: Pal.fa(0.035)
++                                border.color: Pal.fa(0.06)
+                                 border.width: 1
+ 
+                                 ColumnLayout {
+@@ -526,7 +526,7 @@
+                                     Text {
+                                         Layout.alignment: Qt.AlignHCenter
+                                         text: (view.sys && view.sys.weatherReady) ? (view.sys.weatherHumidity + "%") : "--"
+-                                        color: view.sys ? view.sys.colFg : "#ffffff"
++                                        color: view.sys ? view.sys.colFg : Pal.fg
+                                         font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 15; bold: true }
+                                     }
+ 
+@@ -543,8 +543,8 @@
+                                 Layout.fillWidth: true
+                                 Layout.preferredHeight: 60
+                                 radius: 16
+-                                color: Qt.rgba(1, 1, 1, 0.035)
+-                                border.color: Qt.rgba(1, 1, 1, 0.06)
++                                color: Pal.fa(0.035)
++                                border.color: Pal.fa(0.06)
+                                 border.width: 1
+ 
+                                 ColumnLayout {
+@@ -554,7 +554,7 @@
+                                     Text {
+                                         Layout.alignment: Qt.AlignHCenter
+                                         text: (view.sys && view.sys.weatherReady) ? String(view.sys.weatherWind) : "--"
+-                                        color: view.sys ? view.sys.colFg : "#ffffff"
++                                        color: view.sys ? view.sys.colFg : Pal.fg
+                                         font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 15; bold: true }
+                                     }
+ 
+@@ -665,7 +665,7 @@
+                             value: (view.sys && view.sys.loadMem >= 0) ? String(view.sys.loadMem) : "--"
+                             size: 11
+                             gapRatio: 0.18
+-                            color: view.sys ? view.sys.colFg : "#ffffff"
++                            color: view.sys ? view.sys.colFg : Pal.fg
+                         }
+                     }
+ 
+@@ -681,7 +681,7 @@
+                             spacing: 1
+                             Text {
+                                 text: (view.sys && view.sys.loadMem >= 0) ? (view.sys.loadMem + "%") : "--%"
+-                                color: view.sys ? view.sys.colFg : "#ffffff"
++                                color: view.sys ? view.sys.colFg : Pal.fg
+                                 font { family: view.sys ? view.sys.fontFam : "sans-serif"; pixelSize: 11; bold: true }
+                             }
+                             Caption { text: "RAM"; font.pixelSize: 8 }
+@@ -725,7 +725,7 @@
+             Layout.preferredWidth: view.fullW
+             Layout.preferredHeight: 72
+             color: progMa.containsMouse ? Qt.rgba(0.13, 0.13, 0.14, 0.98) : Qt.rgba(0.09, 0.09, 0.09, 0.96)
+-            border.color: progMa.containsMouse ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g, view.sys.colOn.b, 0.4) : Qt.rgba(1, 1, 1, 0.06)
++            border.color: progMa.containsMouse ? Qt.rgba(view.sys.colOn.r, view.sys.colOn.g, view.sys.colOn.b, 0.4) : Pal.fa(0.06)
+             Behavior on color { ColorAnimation { duration: 120 } }
+             Behavior on border.color { ColorAnimation { duration: 120 } }
+ 
+@@ -754,7 +754,7 @@
+                         value: (view.progressMode === "day" ? view.dayPct : view.yearPct) + "%"
+                         size: 13
+                         gapRatio: 0.15
+-                        color: view.sys ? view.sys.colFg : "#ffffff"
++                        color: view.sys ? view.sys.colFg : Pal.fg
+                     }
+                 }
+ 
+@@ -773,10 +773,10 @@
+                             Layout.preferredHeight: 6
+                             radius: 3
+                             color: index < view.curHour
+-                                   ? Qt.rgba(1, 1, 1, 0.88)
++                                   ? Pal.fa(0.88)
+                                    : (index === view.curHour
+                                       ? (view.sys ? view.sys.colCrit : "#d71921")
+-                                      : Qt.rgba(1, 1, 1, 0.12))
++                                      : Pal.fa(0.12))
+                             opacity: index === view.curHour ? view.pulseOpacity : 1.0
+                         }
+                     }
+@@ -797,10 +797,10 @@
+                             Layout.preferredHeight: 6
+                             radius: 3
+                             color: index < view.curMonth
+-                                   ? Qt.rgba(1, 1, 1, 0.88)
++                                   ? Pal.fa(0.88)
+                                    : (index === view.curMonth
+                                       ? (view.sys ? view.sys.colCrit : "#d71921")
+-                                      : Qt.rgba(1, 1, 1, 0.12))
++                                      : Pal.fa(0.12))
+                             opacity: index === view.curMonth ? view.pulseOpacity : 1.0
+                         }
+                     }

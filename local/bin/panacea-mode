@@ -1,0 +1,62 @@
+#!/bin/bash
+# panacea-mode on|off|status — switch the top bar between the Panacea pill
+# (github.com/EnsixD/Panacea, running from ~/.config/panacea) and the Omarchy
+# Dynamic Island (anshu.bar). Omarchy keeps the lock screen, menus, WhatsApp and
+# Shan Shui either way; in Panacea mode the pill also owns notifications.
+set -u
+FLAG="$HOME/.local/state/omarchy/panacea-mode"
+SHELL_JSON="$HOME/.config/omarchy/shell.json"
+
+notif_plugin() {   # $1 = disable|enable  (anshu.notifications owns the D-Bus name)
+  python3 - "$SHELL_JSON" "$1" <<'PY'
+import json, sys
+path, mode = sys.argv[1], sys.argv[2]
+d = json.load(open(path))
+dis = d.setdefault("disabledPlugins", [])
+changed = False
+if mode == "disable" and "anshu.notifications" not in dis:
+    dis.append("anshu.notifications"); changed = True
+if mode == "enable" and "anshu.notifications" in dis:
+    dis.remove("anshu.notifications"); changed = True
+if changed:
+    json.dump(d, open(path, "w"), indent=2); open(path, "a").write("\n")
+PY
+}
+
+running() { pgrep -f "^qs -p $HOME/.config/panacea" >/dev/null; }
+
+start_pill() {
+  running && return
+  # Wait until the Omarchy shell has let go of the notification name.
+  for _ in $(seq 1 30); do
+    busctl --user status org.freedesktop.Notifications >/dev/null 2>&1 || break
+    sleep 0.2
+  done
+  setsid -f qs -p "$HOME/.config/panacea" >/dev/null 2>&1
+}
+
+case "${1:-status}" in
+  on)
+    mkdir -p "$(dirname "$FLAG")"; touch "$FLAG"
+    notif_plugin disable
+    omarchy toggle bar on >/dev/null 2>&1     # "on" = bar-off flag set = island hidden
+    start_pill
+    ;;
+  off)
+    rm -f "$FLAG"
+    pkill -f "^qs -p $HOME/.config/panacea"
+    notif_plugin enable
+    omarchy toggle bar off >/dev/null 2>&1
+    ;;
+  autostart)   # from Hyprland autostart: restore whichever mode was last chosen
+    [ -f "$FLAG" ] && { notif_plugin disable; omarchy toggle bar on >/dev/null 2>&1; sleep 1; start_pill; }
+    ;;
+  panel)       # SUPER+B: Panacea's quick settings, or the island when Panacea is off
+    if running; then qs -p "$HOME/.config/panacea" ipc call pill controls
+    else omarchy-shell -q omarchy.bar island toggle; fi
+    ;;
+  status)
+    [ -f "$FLAG" ] && echo panacea || echo island
+    ;;
+  *) echo "usage: panacea-mode on|off|panel|status" >&2; exit 2 ;;
+esac

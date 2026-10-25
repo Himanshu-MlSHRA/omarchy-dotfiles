@@ -1,0 +1,4 @@
+*.bak*
+*.pre-dotfiles
+*.orig*
+__pycache__/

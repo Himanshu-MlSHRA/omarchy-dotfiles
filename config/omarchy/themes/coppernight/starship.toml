@@ -1,0 +1,64 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$python\
+$nodejs\
+$rust\
+$golang\
+$cmd_duration\
+$line_break\
+$character"""
+
+[character]
+success_symbol = "[❯](bold #412D15)"
+error_symbol = "[✗](bold #C9955C)"
+
+[username]
+format = "[$user]($style) "
+style = "bold #C9BFA8"
+
+[hostname]
+format = "@[$hostname]($style) "
+style = "bold #E1DCC9"
+
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
+style = "bold #B0A286"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+style = "bold #B9AD93"
+
+[git_status]
+format = '([\[$all_status\]]($style))'
+style = "#C9BFA8"
+
+[python]
+format = "[${symbol}${pyenv_prefix}(${version})(${virtualenv})]($style) "
+style = "#B0A286"
+
+[nodejs]
+format = "[$symbol($version)]($style) "
+style = "#C9BFA8"
+
+[rust]
+format = "[$symbol($version)]($style) "
+style = "#E1DCC9"
+
+[golang]
+format = "[$symbol($version)]($style) "
+style = "#B0A286"
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "#EBE7D8"
+
+[line_break]
+disabled = false

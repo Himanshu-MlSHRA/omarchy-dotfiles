@@ -1,0 +1,62 @@
+# Coppernight prompt: one quiet line of context, a copper arrow below.
+add_newline = true
+command_timeout = 200
+format = """
+$directory$git_branch$git_status$python$nodejs$rust$cmd_duration
+$character"""
+
+[character]
+success_symbol = "[❯](bold #C9955C)"
+error_symbol = "[❯](bold #C2664A)"
+vimcmd_symbol = "[❮](bold #C9BFA8)"
+
+[directory]
+style = "#E1DCC9"
+format = "[$path]($style)[$read_only]($read_only_style) "
+truncation_length = 2
+truncation_symbol = "…/"
+repo_root_style = "bold #DDB27A"
+repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+read_only = " 󰌾"
+read_only_style = "#C2664A"
+
+[git_branch]
+symbol = ""
+format = "[on](#6B5537) [$symbol$branch]($style) "
+style = "italic #C9955C"
+
+[git_status]
+format = '[$all_status$ahead_behind]($style)'
+style = "#B0A286"
+ahead = "⇡${count} "
+behind = "⇣${count} "
+diverged = "⇕⇡${ahead_count}⇣${behind_count} "
+conflicted = "≠ "
+untracked = "? "
+modified = "● "
+staged = "+ "
+renamed = "» "
+deleted = "✕ "
+stashed = ""
+up_to_date = ""
+
+[python]
+format = "[via](#6B5537) [${symbol}(${version})(\\($virtualenv\\))]($style) "
+symbol = ""
+style = "#A9A68A"
+
+[nodejs]
+format = "[via](#6B5537) [$symbol($version)]($style) "
+symbol = ""
+style = "#A9A68A"
+detect_files = ["package.json"]
+
+[rust]
+format = "[via](#6B5537) [$symbol($version)]($style) "
+symbol = ""
+style = "#B07850"
+
+[cmd_duration]
+min_time = 2000
+format = "[took](#6B5537) [$duration]($style) "
+style = "#8C7A60"

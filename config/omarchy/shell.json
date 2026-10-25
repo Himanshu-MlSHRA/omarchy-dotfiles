@@ -1,0 +1,91 @@
+{
+  "bar": {
+    "centerAnchor": "anshu.clock",
+    "id": "anshu.bar",
+    "layout": {
+      "center": [
+        {
+          "id": "omarchy.indicators"
+        },
+        {
+          "id": "omarchy.keyboard-layout"
+        },
+        {
+          "format": "dddd HH:mm",
+          "formatAlt": "d MMMM 'W'ww yyyy",
+          "id": "anshu.clock",
+          "verticalFormat": "HH\n\u2014\nmm"
+        },
+        {
+          "id": "anshu.weather"
+        },
+        {
+          "id": "zed.shanshui"
+        },
+        {
+          "id": "omarchy.system-update"
+        }
+      ],
+      "left": [
+        {
+          "id": "anshu.menu"
+        },
+        {
+          "id": "anshu.workspaces"
+        }
+      ],
+      "right": [
+        {
+          "id": "omarchy.tray"
+        },
+        {
+          "id": "io.github.moizibnyousaf.omawhatsapp"
+        },
+        {
+          "id": "anshu.agents"
+        },
+        {
+          "id": "anshu.bluetooth"
+        },
+        {
+          "id": "anshu.network"
+        },
+        {
+          "id": "anshu.audio"
+        },
+        {
+          "id": "anshu.monitor"
+        },
+        {
+          "id": "anshu.power"
+        }
+      ]
+    },
+    "position": "top",
+    "transparent": false
+  },
+  "cloneSourceRestores": [
+    "anshu.notifications",
+    "anshu.menu",
+    "anshu.lock"
+  ],
+  "disabledPlugins": [
+    "omarchy.notifications",
+    "omarchy.osd",
+    "omarchy.menu",
+    "omarchy.lock"
+  ],
+  "idle": {
+    "lock": 300,
+    "screensaver": 150
+  },
+  "plugins": [
+    {
+      "id": "anshu.notifications"
+    },
+    {
+      "id": "anshu.lock"
+    }
+  ],
+  "version": 1
+}

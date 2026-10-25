@@ -1,0 +1,76 @@
+diff --git i/bin/omawhatsapp_core.py w/bin/omawhatsapp_core.py
+index 69d589e..7443ab2 100644
+--- i/bin/omawhatsapp_core.py
++++ w/bin/omawhatsapp_core.py
+@@ -1069,8 +1069,40 @@ class ProcessOutputLimitExceeded(RuntimeError):
+     pass
+ 
+ 
++# Local tweak: a contact with no saved name came through as its raw JID
++# ("919876543210@s.whatsapp.net"). Show just the number, as the phone does.
++# Only display fields are touched; jid/target fields keep the real address.
++_DISPLAY_KEYS = {"name", "title", "sender", "last_sender", "sender_name", "chat_name",
++                 "display_name", "author", "from_name", "subject"}
++_RAW_JID = re.compile(r"^\+?(\d{5,20})(?:@(s\.whatsapp\.net|c\.us|lid))?$")
++
++
++def _pretty_number(text: str) -> str:
++    match = _RAW_JID.match(text.strip())
++    if not match:
++        return text
++    digits, server = match.group(1), match.group(2)
++    if server == "lid":
++        return "Unknown number"
++    if len(digits) == 12 and digits.startswith("91"):
++        return f"+91 {digits[2:7]} {digits[7:]}"
++    if len(digits) == 11 and digits.startswith("1"):
++        return f"+1 {digits[1:4]} {digits[4:7]} {digits[7:]}"
++    return "+" + digits
++
++
++def _prettify_names(value: Any, key: str = "") -> Any:
++    if isinstance(value, dict):
++        return {k: _prettify_names(v, k) for k, v in value.items()}
++    if isinstance(value, list):
++        return [_prettify_names(v, key) for v in value]
++    if isinstance(value, str) and key in _DISPLAY_KEYS and (value[:1] == "+" or value[:1].isdigit()):
++        return _pretty_number(value)
++    return value
++
++
+ def emit(value: dict[str, Any], code: int = 0) -> int:
+-    print(json.dumps(value, ensure_ascii=False, separators=(",", ":")))
++    print(json.dumps(_prettify_names(value), ensure_ascii=False, separators=(",", ":")))
+     return code
+ 
+ 
+@@ -3966,9 +3998,10 @@ class Backend:
+         waits for the click, so a detached `notify-open` child owns the popup
+         and this helper returns at once.
+         """
+-        # Public process arguments must never contain chat text or media paths.
+-        summary, body = "OmaWhatsApp", "New messages. Open OmaWhatsApp to read them."
++        # Local patch: show the real sender and message (single-user laptop).
+         command = self._notification_command()
++        if image:
++            command.append(f"--hint=string:image-path:{image}")
+         if target and str(target.get("jid") or ""):
+             command.append("--print-id")
+             previous = self._notify_ids().get(self._notify_key(target))
+@@ -4137,8 +4170,14 @@ class Backend:
+             previous = self._notify_ids().get(self._notify_key(target))
+             if previous:
+                 safe_command.append(f"--replace-id={previous}")
+-        safe_command.extend(["--", "OmaWhatsApp",
+-                             "New messages. Open OmaWhatsApp to read them."])
++        # Local patch: keep the real summary/body (and avatar) from the request.
++        for part in command:
++            if part.startswith("--hint=string:image-path:/"):
++                safe_command.append(part)
++                break
++        tail = command[command.index("--") + 1:][:2] if "--" in command else []
++        safe_command.append("--")
++        safe_command.extend(tail or ["OmaWhatsApp", "New messages. Open OmaWhatsApp to read them."])
+         command = safe_command
+         key = self._notify_key(target) if str(target.get("jid") or "") else ""
+         closed = {"ok": True, "kind": "notify-open", "opened": False}
