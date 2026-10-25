@@ -46,7 +46,7 @@ Item {
 
   Process {
     id: statsProc
-    command: [Quickshell.env("HOME") + "/.config/omarchy/plugins/anshu.bar/island-stats.sh"]
+    command: [Qt.resolvedUrl("island-stats.sh").toString().replace("file://", "")]
     stdout: StdioCollector {
       waitForEnd: true
       onStreamFinished: {

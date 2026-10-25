@@ -364,7 +364,7 @@ Item {
     : netKind === "" ? "Checking"
     : !wifiEnabled ? "Turned off" : "Not connected"
 
-  readonly property string netScript: Quickshell.env("HOME") + "/.config/omarchy/plugins/anshu.bar/island-network.sh"
+  readonly property string netScript: Qt.resolvedUrl("island-network.sh").toString().replace("file://", "")
 
   // Detail-only fields. Nothing queries them until a detail view asks, which is
   // what `netDetailWanted` is for — an open island should not cost more than a

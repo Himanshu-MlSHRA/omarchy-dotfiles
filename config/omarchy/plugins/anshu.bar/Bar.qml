@@ -919,7 +919,7 @@ Item {
   // painting is on, else the static wallpaper's top band, cached per file).
   Process {
     id: backdropProc
-    command: [Quickshell.env("HOME") + "/.config/omarchy/plugins/anshu.bar/island-backdrop.sh"]
+    command: [Qt.resolvedUrl("island-backdrop.sh").toString().replace("file://", "")]
     stdout: StdioCollector {
       waitForEnd: true
       onStreamFinished: {

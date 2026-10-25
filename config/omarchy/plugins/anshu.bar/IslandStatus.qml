@@ -330,7 +330,7 @@ Item {
 
   Process {
     id: notificationRead
-    command: [Quickshell.env("HOME") + "/.config/omarchy/plugins/anshu.bar/island-notification.sh"]
+    command: [Qt.resolvedUrl("island-notification.sh").toString().replace("file://", "")]
     stdout: StdioCollector {
       waitForEnd: true
       onStreamFinished: {
