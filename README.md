@@ -3,7 +3,7 @@
 A **Dynamic Island** for [Omarchy](https://omarchy.org). The top bar becomes one small island, and everything
 (Wi-Fi, sound, Bluetooth, battery, music, notifications, volume, menus, even app windows) comes out of it.
 
-https://github.com/user-attachments/assets/cdd28e1d-3903-40c0-b500-1f9b09ab8614
+https://github.com/user-attachments/assets/13f49d9a-b1be-438c-b85d-ffbb143b266a
 
 ## Install
 
