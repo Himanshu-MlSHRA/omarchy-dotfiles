@@ -1,4 +1,6 @@
 *.bak*
-*.pre-dotfiles
+brag-output/
+brag-output/work/
 *.orig*
+*.pre-dotfiles
 __pycache__/

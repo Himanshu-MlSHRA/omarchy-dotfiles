@@ -5,6 +5,28 @@ a Dynamic Island top bar, and every bar widget, menu and the lock screen rebuilt
 
 Only what differs from a stock Omarchy install is here.
 
+[![Walkthrough video](docs/walkthrough.jpg)](docs/walkthrough.mp4)
+
+▶ **[Watch the 75-second walkthrough](docs/walkthrough.mp4)**: lock screen and always-on display, the island and its pages,
+Wi-Fi / sound / Bluetooth / battery / Claude detail views, notifications, OSD, launcher, menus, windows flying in and out,
+workspace switching, and the Shan Shui wallpaper.
+
+## Why
+
+Stock Omarchy is fast and good-looking, but its pieces live in different places: a status bar along the top,
+notifications in a corner, menus and the launcher floating in the middle of the screen, an OSD somewhere else.
+On a 14" laptop that means your eyes and the mouse keep jumping around.
+
+I wanted **one calm surface**, like a phone: everything comes out of the top of the screen and goes back into it.
+- The bar is a **Dynamic Island**. Wi-Fi, sound, Bluetooth, battery, media and Claude usage are pages and detail views inside it,
+  not separate popups.
+- Notifications, volume/brightness and the charging animation appear **in** the island.
+- The launcher and every Omarchy menu **morph out of** the island. App windows **fly out of it** when they open and fall back in when they close.
+- The lock screen got the same treatment: a dot-matrix clock, and an **always-on display** that dims the OLED panel
+  and drifts the clock so it doesn't burn in.
+
+All of it is Omarchy's own plugin system (Quickshell/QML): no forked Omarchy, no Waybar, and `omarchy update` keeps working.
+
 ## What's customized
 
 ### Desktop shell (`config/omarchy/plugins/anshu.*`)

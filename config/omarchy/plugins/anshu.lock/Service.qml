@@ -23,6 +23,8 @@ Item {
   property bool passwordPamConfigured: false
   property bool fingerprintConfigured: false
   property bool previewVisible: false
+  // Preview only: show the always-on look without dimming the panel.
+  property bool previewAod: false
   property string enteredPassword: ""
   property string pendingPassword: ""
   property string failureMessage: ""
@@ -420,12 +422,13 @@ Item {
       inputEnabled: false
       loadBackground: root.previewVisible
       passwordText: ""
+      aod: root.previewAod
     }
 
     MouseArea {
       anchors.fill: parent
       acceptedButtons: Qt.LeftButton | Qt.RightButton
-      onClicked: root.previewVisible = false
+      onClicked: { root.previewVisible = false; root.previewAod = false }
     }
   }
 
@@ -685,6 +688,12 @@ Item {
 
     function hidePreview(): string {
       root.previewVisible = false
+      root.previewAod = false
+      return "ok"
+    }
+
+    function previewAod(on: string): string {
+      root.previewAod = on === "on"
       return "ok"
     }
   }
