@@ -162,10 +162,11 @@ Item {
   }
 
   // ------------------------------------------------------------------- osd
-  // omarchy-osd (volume keys, brightness keys, mic mute, keyboard backlight,
-  // output switching, ...) calls `omarchy-shell osd show <json>`. The stock
-  // omarchy.osd plugin is disabled, so that call lands here instead and the
-  // level shows inside the island.
+  // The stock omarchy.osd plugin is disabled, so its two entry points land
+  // here and the level shows inside the island: scripts call
+  // `omarchy-shell osd show <json>` (the IPC target below), and the shell's own
+  // volume and brightness keys summon omarchy.osd in process, which the
+  // anshu.osd plugin forwards to this function. Both must keep working.
   function showOsd(payloadJson) {
     var p = {}
     try { p = JSON.parse(payloadJson || "{}") } catch (e) { return }
@@ -180,13 +181,14 @@ Item {
             tk.text, s.duration > 0 ? Math.max(1100, s.duration) : 0)
   }
 
+  function closeOsd() {
+    if (bannerKind === "osd") bannerEnded()
+  }
+
   IpcHandler {
     target: "osd"
     function show(payloadJson: string): string { status.showOsd(payloadJson); return "ok" }
-    function close(): string {
-      if (status.bannerKind === "osd") status.bannerEnded()
-      return "ok"
-    }
+    function close(): string { status.closeOsd(); return "ok" }
     function state(): string { return status.bannerKind === "osd" ? "open" : "closed" }
     function ping(): string { return "ok" }
   }

@@ -21,6 +21,7 @@ cp_file "$C/omarchy/shell.json" config/omarchy
 cp_file "$C/omarchy/shell.toml" config/omarchy
 cp_file "$C/omarchy/extensions/omarchy-menu.jsonc" config/omarchy/extensions
 cp_file "$C/omarchy/hooks/theme-set.d/theme-gtk-css.sh" config/omarchy/hooks/theme-set.d
+cp_file "$C/omarchy/hooks/post-update.d/check-island-osd" config/omarchy/hooks/post-update.d
 rsync -a "$C/omarchy/branding/" "$R/config/omarchy/branding/"
 
 # Hyprland (only the files that differ from Omarchy's defaults)

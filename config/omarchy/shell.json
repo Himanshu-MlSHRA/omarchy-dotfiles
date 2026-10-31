@@ -14,7 +14,7 @@
           "format": "dddd HH:mm",
           "formatAlt": "d MMMM 'W'ww yyyy",
           "id": "anshu.clock",
-          "verticalFormat": "HH\n\u2014\nmm"
+          "verticalFormat": "HH\n—\nmm"
         },
         {
           "id": "anshu.weather"
@@ -85,6 +85,9 @@
     },
     {
       "id": "anshu.lock"
+    },
+    {
+      "id": "anshu.osd"
     }
   ],
   "version": 1

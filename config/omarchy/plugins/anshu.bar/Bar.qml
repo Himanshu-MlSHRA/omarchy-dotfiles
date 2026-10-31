@@ -812,6 +812,10 @@ Item {
 
   Component.onCompleted: { applyBarConfig(); IslandBridge.bar = root }
 
+  // anshu.osd forwards every omarchy.osd summon here through IslandBridge.
+  function showIslandOsd(payloadJson) { islandStatusObject.showOsd(payloadJson) }
+  function closeIslandOsd() { islandStatusObject.closeOsd() }
+
   // Revealing the indicators widens their section, which can slide a neighbour
   // under a stationary pointer. Collapsing on that un-hover would move it back
   // out and re-open the peek, so hold until the pointer leaves the bar.

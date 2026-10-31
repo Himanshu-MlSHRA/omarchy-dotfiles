@@ -158,9 +158,14 @@ dropped (the scrim is built as three strips around the island for that reason).
   long as the toast is live (8 s normal, 5 s low, critical until acted on);
   click = open it, right click = dismiss. `+N` = more waiting behind it.
   The island acts through `notifications invokeOriginal|dismissOriginal <id>`.
-- Volume, brightness, mic, keyboard light and output switching arrive as
-  `omarchy-shell osd show`. `omarchy.osd` is disabled in shell.json and
-  `IslandStatus.qml` answers the `osd` IPC target itself (level-bar banner).
+- Volume, brightness, mic, keyboard light and output switching reach the
+  island two ways, and both must work. `omarchy.osd` is disabled in shell.json.
+  Scripts call `omarchy-shell osd show`, and `IslandStatus.qml` answers that
+  `osd` IPC target itself (level-bar banner). Since Omarchy 4.5 the volume and
+  brightness keys call `shell.summon("omarchy.osd", ...)` in process instead;
+  the `anshu.osd` plugin (`clonedFrom: omarchy.osd`) receives those and calls
+  `IslandBridge.bar.showIslandOsd()`. The post-update hook `check-island-osd`
+  warns if this stops working.
   IPC handlers only register on `omarchy restart shell`, not on hot reload.
 - The launcher/menus (SUPER+SPACE, SUPER+ALT+SPACE, SUPER+ESCAPE) are the
   `anshu.menu` clone. Its card hangs under the island and opens/closes with the

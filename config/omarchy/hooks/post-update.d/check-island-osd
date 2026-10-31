@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Omarchy updates have changed how the shell reaches its OSD before, which made
+# the island's volume and brightness banner vanish without any error. This sends
+# one through the route the keys use and warns if the island does not show it.
+# See ~/.config/omarchy/plugins/anshu.osd/Osd.qml.
+
+payload='{"icon":"display","message":"Island OSD ok","duration":"1400"}'
+
+for _ in {1..15}; do
+  omarchy-shell shell ping >/dev/null 2>&1 && break
+  sleep 1
+done
+
+for _ in {1..3}; do
+  omarchy-shell shell summon omarchy.osd "$payload" >/dev/null 2>&1
+  sleep 0.4
+  [[ $(omarchy-shell osd state 2>/dev/null) == open ]] && exit 0
+  sleep 2
+done
+
+notify-send -u critical "Island OSD broke after this update" \
+  "Volume and brightness may not show in the island. Check the anshu.osd plugin."

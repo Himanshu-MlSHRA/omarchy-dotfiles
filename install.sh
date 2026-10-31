@@ -104,6 +104,8 @@ say "Backup of your current files: $BK"
 say "Installing the Dynamic Island"
 put_plugin anshu.bar
 put_plugin anshu.notifications
+put_plugin anshu.osd
+put_file omarchy/hooks/post-update.d/check-island-osd
 fc-list | grep -qi "Maple Mono NF" || { say "Installing the Maple Mono NF font"; omarchy pkg aur add maplemono-nf || warn "font not installed; the island falls back to your mono font"; }
 
 # window flight on/off
@@ -191,6 +193,7 @@ omarchy restart shell >/dev/null 2>&1 || true
 for _ in $(seq 1 20); do omarchy-shell shell rescanPlugins >/dev/null 2>&1 && break; sleep 0.5; done
 omarchy bar use anshu.bar >/dev/null
 omarchy plugin enable anshu.notifications >/dev/null
+omarchy plugin enable anshu.osd >/dev/null
 omarchy plugin disable omarchy.notifications >/dev/null 2>&1 || true
 omarchy plugin disable omarchy.osd >/dev/null 2>&1 || true
 if [[ $MODE != island ]]; then
